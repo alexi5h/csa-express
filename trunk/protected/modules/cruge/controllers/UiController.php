@@ -649,7 +649,7 @@ class UiController extends Controller {
         $this->render('rbacauthitemupdate', array('model' => $editor));
     }
 
-     /**
+    /**
      * Obtiene los usuarios con el rol antiguoy tambien los elimina de cruge_authassignment usuario en la tabla de roles
      * @author Mauricio Chamorro <mchamorro@tradesystem.com.ec>
      * @param String $oldName

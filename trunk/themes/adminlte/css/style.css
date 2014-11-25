@@ -7718,6 +7718,10 @@ table.fc-border-separate {
 .ion-xbox:before {
     content: "\f30c"; }
 
+a[data-widget='collapse']{
+    color: #fff !important;
+}
+
 /*!
   Ionicons, v1.4.0
   Created by Ben Sperry for the Ionic Framework, http://ionicons.com/

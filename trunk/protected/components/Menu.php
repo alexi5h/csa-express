@@ -8,7 +8,7 @@ class Menu {
         self::$_controller = $controller;
         $items = array(
             array('label' => '<i class="fa fa-dashboard"></i> Dashboard', 'url' => Yii::app()->homeUrl),
-//            array('label' => '<i class="fa fa-group"></i> ' . Persona::label(2), 'url' => array('/crm/persona/admin'), 'access' => 'action_persona_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'persona')),
+            array('label' => '<i class="fa fa-users"></i> ' . Persona::label(2), 'url' => array('/crm/persona/admin'), 'access' => 'action_persona_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'persona')),
 //            array('label' => '<i class="icon-money"></i> ' . Ahorro::label(2), 'url' => array('/ahorro/ahorro/admin'), 'access' => 'action_ahorro_admin', 'active_rules' => array('module' => 'ahorro', 'controller' => 'ahorro')),
 //            array('label' => '<i class="icon-usd"></i> ' . AhorroRetiro::label(2), 'url' => array('/ahorro/ahorroRetiro/admin'), 'access' => 'action_ahorroRetiro_admin', 'active_rules' => array('module' => 'ahorro', 'controller' => 'ahorroRetiro')),
 //            array('label' => '<i class="icon-shopping-cart"></i> '.Credito::label(2), 'url' => array('/credito/credito/admin'), 'access' => 'action_credito_admin', 'active_rules' => array('module' => 'credito', 'controller' => 'credito')),
@@ -43,14 +43,14 @@ class Menu {
     public static function getAdminMenu($controller) {
         self::$_controller = $controller;
         $items = array(
-            array('label' => '<i class="icon-mail-reply"></i>  Regresar a la App', 'url' => Yii::app()->homeUrl),
-            array('label' => '<i class="icon-user"></i>  Usuarios', 'url' => Yii::app()->user->ui->userManagementAdminUrl, 'access' => 'Cruge.ui.*', 'active_rules' => array('module' => 'cruge')),
-//            array('label' => '<i class="icon-map-marker"></i>  Catálogos', 'url' => '#', 'items' => array(
-//                    array('label' => 'Provincias', 'url' => array('/crm/provincia/admin'), 'access' => 'action_provincia_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'provincia')),
-//                    array('label' => 'Cantones', 'url' => array('/crm/canton/admin'), 'access' => 'action_canton_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'canton')),
-//                    array('label' => 'Parroquias', 'url' => array('/crm/parroquia/admin'), 'access' => 'action_parroquia_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'parroquia')),
-//                    array('label' => 'Barrios', 'url' => array('/crm/barrio/admin'), 'access' => 'action_barrio_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'barrio')),
-//                )),
+            array('label' => '<i class="fa fa-mail-reply"></i>  Regresar a la App', 'url' => Yii::app()->homeUrl),
+            array('label' => '<i class="fa fa-user"></i>  Usuarios', 'url' => Yii::app()->user->ui->userManagementAdminUrl, 'access' => 'Cruge.ui.*', 'active_rules' => array('module' => 'cruge')),
+            array('label' => '<i class="fa fa-map-marker"></i>  Catálogos <i class="fa pull-right fa-angle-left"></i>', 'url' => '#', 'items' => array(
+                    array('label' => '<i class="fa fa-angle-double-right"></i> Provincias', 'url' => array('/crm/provincia/admin'), 'access' => 'action_provincia_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'provincia')),
+                    array('label' => '<i class="fa fa-angle-double-right"></i> Ciudades', 'url' => array('/crm/ciudad/admin'), 'access' => 'action_ciudad_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'ciudad')),
+                    array('label' => '<i class="fa fa-angle-double-right"></i> Parroquias', 'url' => array('/crm/parroquia/admin'), 'access' => 'action_parroquia_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'parroquia')),
+                    array('label' => '<i class="fa fa-angle-double-right"></i> Barrios', 'url' => array('/crm/barrio/admin'), 'access' => 'action_barrio_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'barrio')),
+                )),
 //            array('label' => '<i class="icon-dollar"></i>  Entidades', 'url' => '#', 'items' => array(
 //                    array('label' => 'Entidad Bancaria', 'url' => array('/crm/entidadBancaria/admin'), 'access' => 'action_entidadBancaria_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'entidadBancaria')),
 //                    array('label' => 'Sucursal', 'url' => array('/crm/sucursal/admin'), 'access' => 'action_sucursal_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'sucursal')),
