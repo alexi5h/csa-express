@@ -62,13 +62,13 @@
                                     </p>
                                 </li>-->
                                 <?php if (!Yii::app()->user->isGuest): ?>
-                                    <li class="gestion-user"><?php echo CHtml::link('<i class="icon-user"></i>&nbsp;&nbsp;Mi Cuenta', array('/cruge/ui/editprofile')) ?></a></li>
+                                    <li class="gestion-user"><?php echo CHtml::link('<i class="fa fa-user"></i>&nbsp;&nbsp;Mi Cuenta', array('/cruge/ui/editprofile')) ?></a></li>
                                     <?php if (Yii::app()->user->checkAccess('admin')): ?>
-                                        <li class="gestion-user"><?php echo CHtml::link('<i class="icon-cog"></i>&nbsp;&nbsp;Administración', Yii::app()->user->ui->userManagementAdminUrl) ?></li>
+                                        <li class="gestion-user"><?php echo CHtml::link('<i class="fa fa-cog"></i>&nbsp;&nbsp;Administración', Yii::app()->user->ui->userManagementAdminUrl) ?></li>
                                     <?php endif; ?>
-                                    <li class="gestion-user"><?php echo CHtml::link('<i class="icon-key"></i>&nbsp;&nbsp;Cerrar Sesión', Yii::app()->user->ui->logoutUrl) ?></a></li>
+                                    <li class="gestion-user"><?php echo CHtml::link('<i class="fa fa-key"></i>&nbsp;&nbsp;Cerrar Sesión', Yii::app()->user->ui->logoutUrl) ?></a></li>
                                 <?php else: ?>
-                                    <li class="gestion-user"><?php echo CHtml::link('<i class="icon-key"></i>&nbsp;&nbsp;Iniciar Sesión', Yii::app()->user->ui->loginUrl) ?></a></li>
+                                    <li class="gestion-user"><?php echo CHtml::link('<i class="fa fa-key"></i>&nbsp;&nbsp;Iniciar Sesión', Yii::app()->user->ui->loginUrl) ?></a></li>
                                 <?php endif; ?>
                             </ul>
                         </li>
@@ -108,10 +108,10 @@
                     $this->widget('zii.widgets.CMenu', array(
                         'items' => $this->admin ? Menu::getAdminMenu($this) : Menu::getMenu($this),
                         'encodeLabel' => false,
-                        'itemCssClass' => 'sub-menu',
+//                        'itemCssClass' => '',
                         'activeCssClass' => 'active',
                         'htmlOptions' => array('class' => 'sidebar-menu'),
-                        'submenuHtmlOptions' => array('class' => 'sub')
+                        'submenuHtmlOptions' => array('class' => 'treeview-menu')
                     ));
                     ?>
                     <!--</ul>-->

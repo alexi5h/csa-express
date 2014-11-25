@@ -32,8 +32,8 @@
     </div>
 
     <p class="p-container">
-        <!--<span><?php // echo Yii::app()->user->ui->passwordRecoveryLink; ?></span>-->
-        <button class="btn btn-primary btn-flat btnlogin"><i class="glyphicon glyphicon-ok"></i> <?php echo CrugeTranslator::t('logon', "Log In") ?></button>
+        <!--<span><?php // echo Yii::app()->user->ui->passwordRecoveryLink;  ?></span>-->
+        <button class="btn btn-primary btn-flat btnlogin"><i class="glyphicon glyphicon-ok"></i> <?php echo 'Ingresar' ?></button>
         <?php //Yii::app()->user->ui->tbutton(CrugeTranslator::t('logon', "Log In"));  ?>
         <?php
         if (Yii::app()->user->um->getDefaultSystem()->getn('registrationonlogin') === 1)

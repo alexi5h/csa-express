@@ -5,15 +5,14 @@
 $this->pageTitle = Yii::t('app', 'Administrador de Usuarios');
 ?>
 
-<div class="widget blue">
-    <div class="widget-title">
-        <h4><i class="icon-user"></i> <?php echo ucwords(CrugeTranslator::t("crear nuevo usuario")); ?></h4>
-        <span class="tools">
-            <a href="javascript:;" class="icon-chevron-down"></a>
-            <!--a href="javascript:;" class="icon-remove"></a-->
-        </span>
+<div class="box box-solid box-primary">
+    <div class="box-header">
+        <h4 class="box-title"> <i class="fa fa-user"></i> <?php echo ucwords(CrugeTranslator::t("crear nuevo usuario")); ?> </h4>
+        <div class="box-tools pull-right">
+            <a class="btn btn-primary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></a>
+        </div>
     </div>
-    <div class="widget-body">
+    <div class="box-body">
         <?php
         $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
             'type' => 'horizontal',
@@ -25,13 +24,13 @@ $this->pageTitle = Yii::t('app', 'Administrador de Usuarios');
         ?>
 
 
-        <?php echo $form->textFieldRow($model, 'username', array('class' => 'span4')) ?>
-        <?php echo $form->textFieldRow($model, 'email', array('class' => 'span4')) ?>
+        <?php echo $form->textFieldGroup($model, 'username', array('class' => 'span4')) ?>
+        <?php echo $form->textFieldGroup($model, 'email', array('class' => 'span4')) ?>
         <?php
-        echo $form->textFieldRow($model, 'newPassword', array(
+        echo $form->textFieldGroup($model, 'newPassword', array(
             'class' => 'span12',
             'append' => CHtml::ajaxLink(
-                    "<i class='icon-refresh'></i>"
+                    "<i class='fa fa-refresh'></i>"
                     , Yii::app()->user->ui->ajaxGenerateNewPasswordUrl
                     , array('success' => 'js:fnSuccess', 'error' => 'js:fnError')
             )
@@ -63,27 +62,24 @@ $this->pageTitle = Yii::t('app', 'Administrador de Usuarios');
             echo "</div>";
         }
         ?>
-        <!-- fin de campos extra definidos por el administrador del sistema -->
-        <div class="form-actions">
-            <div class="form-actions-float">
-                <?php
-                $this->widget('booster.widgets.TbButton', array(
-                    'buttonType' => 'submit',
-                    'type' => 'success',
-                    'icon' => 'ok',
-                    'label' => CrugeTranslator::t("Guardar"),
-                ));
-                ?>
-                <?php
-                $this->widget('booster.widgets.TbButton', array(
-                    'icon' => 'remove',
-                    'label' => Yii::t('AweCrud.app', 'Cancel'),
-                    'htmlOptions' => array('onclick' => 'javascript:history.go(-1)')
-                ));
-                ?>
-            </div>
-        </div>
-        <?php //echo $form->errorSummary($model);  ?>
-        <?php $this->endWidget(); ?>
+    </div>
+    <div class="box-footer">
+        <?php
+        $this->widget('booster.widgets.TbButton', array(
+            'buttonType' => 'submit',
+//                    'type' => 'success',
+            'icon' => 'ok',
+            'label' => CrugeTranslator::t("Guardar"),
+            'context' => 'success',
+        ));
+        ?>
+        <?php
+        $this->widget('booster.widgets.TbButton', array(
+            'icon' => 'remove',
+            'label' => Yii::t('AweCrud.app', 'Cancel'),
+            'htmlOptions' => array('onclick' => 'javascript:history.go(-1)')
+        ));
+        ?>
     </div>
 </div>
+<?php $this->endWidget(); ?>
