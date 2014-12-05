@@ -6,7 +6,7 @@ $this->pageTitle = Yii::t('app', 'Administrador de Usuarios');
 
 <div class="box box-solid box-primary">
     <div class="box-header">
-        <h4 class="box-title"> <i class="fa fa-group"></i> <?php echo ucwords(CrugeTranslator::t($boolIsUserManagement ? "editando usuario" : "editando tu perfil")); ?> </h4>
+        <h4 class="box-title"> <i class="fa fa-user"></i> <?php echo ucwords(CrugeTranslator::t($boolIsUserManagement ? "editando usuario" : "editando tu perfil")); ?> </h4>
         <div class="box-tools pull-right">
             <a class="btn btn-primary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></a>
         </div>
@@ -27,7 +27,7 @@ $this->pageTitle = Yii::t('app', 'Administrador de Usuarios');
         echo $form->textFieldGroup($model, 'newPassword', array(
             'class' => 'span12',
             'append' => CHtml::ajaxLink(
-                    "<i class='icon-refresh'></i>"
+                    "<i class='fa fa-refresh'></i>"
                     , Yii::app()->user->ui->ajaxGenerateNewPasswordUrl
                     , array('success' => 'js:fnSuccess', 'error' => 'js:fnError')
             )
@@ -118,6 +118,7 @@ $this->pageTitle = Yii::t('app', 'Administrador de Usuarios');
 //                'type' => 'success',
             'icon' => 'ok',
             'label' => CrugeTranslator::t("Guardar"),
+            'context' => 'success',
         ));
         ?>
         <?php

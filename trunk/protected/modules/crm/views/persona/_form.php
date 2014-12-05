@@ -1,4 +1,6 @@
 <?php
+Util::tsRegisterAssetJs('_form.js');
+
 /** @var PersonaController $this */
 /** @var Persona $model */
 /** @var AweActiveForm $form */
@@ -54,12 +56,12 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
                     'format' => 'dd/mm/yyyy',
                 ),
                 'htmlOptions' => array(
-                    'id' => 'datemask',
+//                    'id' => 'datemask',
                     'data-inputmask' => "'alias': 'dd/mm/yyyy'",
                     'data-mask' => '',
                 ),
             ),
-        ))
+        ));
         ?>
 
         <?php // echo $form->dropDownListGroup($model, 'tipo', array('wrapperHtmlOptions' => array('class' => 'col-sm-12',), 'widgetOptions' => array('data' => array('A' => 'A', 'L' => 'L',), 'htmlOptions' => array(),))) ?>
@@ -78,25 +80,27 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         ));
         ?>
 
-        <?php // echo $form->textFieldGroup($model, 'usuario_creacion_id') ?>
+        <?php // echo $form->textFieldGroup($model, 'usuario_creacion_id')  ?>
 
     </div>
     <div class="box-footer">
-        <?php
-        $this->widget('booster.widgets.TbButton', array(
-            'buttonType' => 'submit',
-            'icon' => 'ok',
-            'label' => $model->isNewRecord ? Yii::t('AweCrud.app', 'Create') : Yii::t('AweCrud.app', 'Save'),
-            'context' => 'success',
-        ));
-        ?>
-        <?php
-        $this->widget('booster.widgets.TbButton', array(
-            'label' => Yii::t('AweCrud.app', 'Cancel'),
-            'icon' => 'remove',
-            'htmlOptions' => array('onclick' => 'javascript:history.go(-1)')
-        ));
-        ?>
+        <center>
+            <?php
+            $this->widget('booster.widgets.TbButton', array(
+                'buttonType' => 'submit',
+                'icon' => 'ok',
+                'label' => $model->isNewRecord ? Yii::t('AweCrud.app', 'Create') : Yii::t('AweCrud.app', 'Save'),
+                'context' => 'success',
+            ));
+            ?>
+            <?php
+            $this->widget('booster.widgets.TbButton', array(
+                'label' => Yii::t('AweCrud.app', 'Cancel'),
+                'icon' => 'remove',
+                'htmlOptions' => array('onclick' => 'javascript:history.go(-1)')
+            ));
+            ?>
+        </center>
     </div>
 </div>
 <?php $this->endWidget(); ?>

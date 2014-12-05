@@ -4,15 +4,12 @@
 $this->pageTitle = Yii::t('app', 'Roles y Asignaciones');
 ?>
 
-<div class="widget blue">
-    <div class="widget-title">
-        <h4><i class="icon-key"></i> <?php echo ucwords(CrugeTranslator::t("Creando")." ".CrugeTranslator::t($model->categoria));?></h4>
-        <span class="tools">
-            <a href="javascript:;" class="icon-chevron-down"></a>
-            <!--a href="javascript:;" class="icon-remove"></a-->
-        </span>
-     </div>
-    <div class="widget-body">
-        <?php $this->renderPartial('_authitemform',array('model'=>$model),false);?>
+<div class="box box-solid box-primary">
+    <div class="box-header">
+        <h4 class="box-title"> <i class="fa fa-plus"></i> <?php echo ucwords(CrugeTranslator::t("Creando") . " " . CrugeTranslator::t($model->categoria)); ?></h4>
+        <div class="box-tools pull-right">
+            <a class="btn btn-primary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></a>
+        </div>
     </div>
+    <?php $this->renderPartial('_authitemform', array('model' => $model), false); ?>
 </div>

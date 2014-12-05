@@ -6,7 +6,7 @@ $this->pageTitle = Yii::t('app', 'Administrador de Usuarios');
 
 <div class="box box-solid box-primary">
     <div class="box-header">
-        <h4 class="box-title"> <i class="fa fa-group"></i> <?php echo ucwords(CrugeTranslator::t('admin', 'Manage Users')); ?> </h4>
+        <h4 class="box-title"> <i class="fa fa-user"></i> <?php echo ucwords(CrugeTranslator::t('admin', 'Manage Users')); ?> </h4>
         <div class="box-tools pull-right">
             <a class="btn btn-primary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></a>
         </div>

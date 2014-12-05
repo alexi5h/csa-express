@@ -2,25 +2,24 @@
 $this->pageTitle = Yii::t('app', 'Roles y Asignaciones');
 ?>
 
-
-
-<div class="widget blue">
-    <div class="widget-title">
-        <h4><i class="icon-key"></i> <?php echo ucwords(CrugeTranslator::t("roles"));?></h4>
-        <span class="tools">
-            <a href="javascript:;" class="icon-chevron-down"></a>
-            <!--a href="javascript:;" class="icon-remove"></a-->
-        </span>
-     </div>
-    <div class="widget-body">
+<div class="box box-solid box-primary">
+    <div class="box-header">
+        <h4 class="box-title"> <i class="fa fa-group"></i> <?php echo ucwords(CrugeTranslator::t("roles")); ?></h4>
+        <div class="box-tools pull-right">
+            <button class="btn btn-primary btn-sm" data-widget="collapse">
+                <i class="fa fa-minus"></i>
+            </button>
+        </div>
+    </div>
+    <div class="box-body">
         <div class="row-fluid">
-            <div class='span12'>
-            <?php echo CHtml::link('<i class="icon-plus icon-white"></i> '.CrugeTranslator::t("Crear Nuevo Rol")
-                    ,Yii::app()->user->ui->getRbacAuthItemCreateUrl(CAuthItem::TYPE_ROLE),
-                    array('class'=>'btn btn-success pull-right'));?>
+            <div class='col-lg-12'>
+                <?php
+                echo CHtml::link('<i class="fa fa-plus icon-white"></i> ' . CrugeTranslator::t("Crear Nuevo Rol")
+                        , Yii::app()->user->ui->getRbacAuthItemCreateUrl(CAuthItem::TYPE_ROLE), array('class' => 'btn btn-success pull-right'));
+                ?>
             </div>
         </div>
-        
-        <?php $this->renderPartial('_listauthitems',array('dataProvider'=>$dataProvider),false);?>
+        <?php $this->renderPartial('_listauthitems', array('dataProvider' => $dataProvider), false); ?>
     </div>
 </div>
