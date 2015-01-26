@@ -51,6 +51,10 @@ class Menu {
                     array('label' => '<i class="fa fa-angle-double-right"></i> Parroquias', 'url' => array('/crm/parroquia/admin'), 'access' => 'action_parroquia_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'parroquia')),
                     array('label' => '<i class="fa fa-angle-double-right"></i> Barrios', 'url' => array('/crm/barrio/admin'), 'access' => 'action_barrio_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'barrio')),
                 )),
+            array('label' => '<i class="fa fa-map-marker"></i>  Entidades <i class="fa pull-right fa-angle-left"></i>', 'url' => '#', 'items' => array(
+                    array('label' => '<i class="fa fa-angle-double-right"></i> Agencias', 'url' => array('/crm/agencia/admin'), 'access' => 'action_agencia_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'agencia')),
+                    array('label' => '<i class="fa fa-angle-double-right"></i> Sucursales', 'url' => array('/crm/sucursal/admin'), 'access' => 'action_sucursal_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'sucursal')),
+                )),
 //            array('label' => '<i class="icon-dollar"></i>  Entidades', 'url' => '#', 'items' => array(
 //                    array('label' => 'Entidad Bancaria', 'url' => array('/crm/entidadBancaria/admin'), 'access' => 'action_entidadBancaria_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'entidadBancaria')),
 //                    array('label' => 'Sucursal', 'url' => array('/crm/sucursal/admin'), 'access' => 'action_sucursal_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'sucursal')),
