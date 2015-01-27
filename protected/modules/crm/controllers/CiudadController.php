@@ -32,6 +32,8 @@ class CiudadController extends AweController {
      */
     public function actionCreate() {
         $model = new Ciudad;
+        $model_provincia = new Provincia;
+        $model_provincia = Provincia::model()->findAll();
 
         $this->performAjaxValidation($model, 'ciudad-form');
 
@@ -45,6 +47,7 @@ class CiudadController extends AweController {
 
         $this->render('create', array(
             'model' => $model,
+            'model_provincia' => $model_provincia,
         ));
     }
 
@@ -55,6 +58,8 @@ class CiudadController extends AweController {
      */
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
+        $model_provincia = new Provincia;
+        $model_provincia = Provincia::model()->findAll();
 
         $this->performAjaxValidation($model, 'ciudad-form');
 
@@ -67,6 +72,7 @@ class CiudadController extends AweController {
 
         $this->render('update', array(
             'model' => $model,
+            'model_provincia' => $model_provincia,
         ));
     }
 
@@ -121,6 +127,29 @@ class CiudadController extends AweController {
         if (isset($_POST['ajax']) && $_POST['ajax'] === 'ciudad-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();
+        }
+    }
+    
+    public function actionAjaxGetCiudadesByProvincia() {
+        if (Yii::app()->request->isAjaxRequest) {
+            if (isset($_POST['provincia_id']) && $_POST['provincia_id'] > 0) {
+                $data = Ciudad::model()->findAll(array(
+                    "condition" => "provincia_id =:provincia_id ",
+                    "order" => "nombre",
+                    "params" => array(':provincia_id' => $_POST['provincia_id'],)
+                ));
+                if ($data) {
+                    $data = CHtml::listData($data, 'id', 'nombre');
+                    echo CHtml::tag('option', array('value' => 0, 'id' => 'p'), '- Ciudades -', true);
+                    foreach ($data as $value => $name) {
+                        echo CHtml::tag('option', array('value' => $value), CHtml::encode($name), true);
+                    }
+                } else {
+                    echo CHtml::tag('option', array('value' => 0), '- No existen opciones -', true);
+                }
+            } else {
+                echo CHtml::tag('option', array('value' => 0, 'id' => 'p'), '- Seleccione una provincia -', true);
+            }
         }
     }
 

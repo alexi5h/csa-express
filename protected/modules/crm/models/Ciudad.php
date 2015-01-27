@@ -15,7 +15,7 @@ class Ciudad extends BaseCiudad {
     }
 
     public static function label($n = 1) {
-        return Yii::t('app', 'Ciudad|Ciudads', $n);
+        return Yii::t('app', 'Ciudad|Ciudades', $n);
     }
     
     public function scopes() {

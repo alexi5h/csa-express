@@ -32,11 +32,16 @@ class BarrioController extends AweController {
      */
     public function actionCreate() {
         $model = new Barrio;
+        $model_provincia = Provincia::model()->findAll();
+        $model_ciudad = new Ciudad;
+        $model_parroquia = new Parroquia;
+//        $model_parroquia=  Parroquia::model()->findAll();
 
         $this->performAjaxValidation($model, 'barrio-form');
 
         if (isset($_POST['Barrio'])) {
             $model->attributes = $_POST['Barrio'];
+            $model->estado = Barrio::ESTADO_ACTIVO;
             if ($model->save()) {
                 $this->redirect(array('admin'));
             }
@@ -44,6 +49,9 @@ class BarrioController extends AweController {
 
         $this->render('create', array(
             'model' => $model,
+            'model_provincia' => $model_provincia,
+            'model_ciudad' => $model_ciudad,
+            'model_parroquia' => $model_parroquia,
         ));
     }
 
@@ -54,6 +62,27 @@ class BarrioController extends AweController {
      */
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
+        
+        $model_provincia = new Provincia;
+        $model_provincia = Provincia::model()->findAll();
+        $provincia_update = Provincia::model()->findByPk($model->parroquia->ciudad->provincia_id);
+        $model->provincia_id = $provincia_update->id;
+
+        $model_ciudad = Ciudad::model()->findAll(array(
+            "condition" => "provincia_id =:provincia_id ",
+            "order" => "nombre",
+            "params" => array(':provincia_id' => $model->provincia_id,)
+        ));
+        $ciudad_update = Ciudad::model()->findByPk($model->parroquia->ciudad_id);
+        $model->ciudad_id = $ciudad_update->id;
+        
+        $model_parroquia = Parroquia::model()->findAll(array(
+            "condition" => "ciudad_id =:ciudad_id ",
+            "order" => "nombre",
+            "params" => array(':ciudad_id' => $model->ciudad_id,)
+        ));
+//        $parroquia_update = Parroquia::model()->findByPk($model->parroquia_id);
+//        $model->ciudad_id = $provincia_update->id;
 
         $this->performAjaxValidation($model, 'barrio-form');
 
@@ -66,6 +95,9 @@ class BarrioController extends AweController {
 
         $this->render('update', array(
             'model' => $model,
+            'model_provincia' => $model_provincia,
+            'model_ciudad' => $model_ciudad,
+            'model_parroquia' => $model_parroquia,
         ));
     }
 
