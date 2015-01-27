@@ -20,9 +20,19 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
     </div>
     <div class="box-body">
         <?php echo $form->textFieldGroup($model, 'nombre', array('maxlength' => 45)) ?>
-        <?php echo $form->dropDownListGroup($model, 'estado', array('wrapperHtmlOptions' => array('class' => 'col-sm-12',), 'widgetOptions' => array('data' => array('ACTIVO' => 'ACTIVO', 'INACTIVO' => 'INACTIVO',), 'htmlOptions' => array(),))) ?>
         <?php echo $form->dropDownListGroup($model, 'tipo', array('wrapperHtmlOptions' => array('class' => 'col-sm-12',), 'widgetOptions' => array('data' => array('PRINCIPAL' => 'PRINCIPAL', 'SECUNDARIA' => 'SECUNDARIA', 'TRAYECTO ESPECIAL' => 'TRAYECTO ESPECIAL',), 'htmlOptions' => array(),))) ?>
-        <?php echo $form->dropDownListGroup($model, 'provincia_id', array('wrapperHtmlOptions' => array('class' => 'col-sm-12',), 'widgetOptions' => array('data' => array('' => ' -- Seleccione -- ') + CHtml::listData(Provincia::model()->findAll(), 'id', Provincia::representingColumn()), 'htmlOptions' => array(),))) ?>
+        <?php
+        echo $form->select2Group(
+                $model, 'provincia_id', array(
+            'widgetOptions' => array(
+                'asDropDownList' => true,
+                'data' => CHtml::listData($model_provincia, 'id', 'nombre'),
+                'options' => array(
+                    'placeholder' => '-- Seleccione --',
+                )
+            ))
+        );
+        ?>
     </div>
     <div class="box-footer">
         <?php

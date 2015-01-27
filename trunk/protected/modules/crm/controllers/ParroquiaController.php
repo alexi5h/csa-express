@@ -32,11 +32,15 @@ class ParroquiaController extends AweController {
      */
     public function actionCreate() {
         $model = new Parroquia;
+        $model_provincia = new Provincia;
+        $model_provincia = Provincia::model()->findAll();
+        $model_ciudad = new Ciudad;
 
         $this->performAjaxValidation($model, 'parroquia-form');
 
         if (isset($_POST['Parroquia'])) {
             $model->attributes = $_POST['Parroquia'];
+            $model->estado = Parroquia::ESTADO_ACTIVO;
             if ($model->save()) {
                 $this->redirect(array('admin'));
             }
@@ -44,6 +48,8 @@ class ParroquiaController extends AweController {
 
         $this->render('create', array(
             'model' => $model,
+            'model_provincia' => $model_provincia,
+            'model_ciudad' => $model_ciudad,
         ));
     }
 
@@ -54,6 +60,16 @@ class ParroquiaController extends AweController {
      */
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
+        $model_provincia = new Provincia;
+        $model_provincia = Provincia::model()->findAll();
+        $provincia_update = Provincia::model()->findByPk($model->ciudad->provincia_id);
+        $model->provincia_id = $provincia_update->id;
+
+        $model_ciudad = Ciudad::model()->findAll(array(
+            "condition" => "provincia_id =:provincia_id ",
+            "order" => "nombre",
+            "params" => array(':provincia_id' => $model->ciudad->provincia_id,)
+        ));
 
         $this->performAjaxValidation($model, 'parroquia-form');
 
@@ -66,6 +82,8 @@ class ParroquiaController extends AweController {
 
         $this->render('update', array(
             'model' => $model,
+            'model_provincia' => $model_provincia,
+            'model_ciudad' => $model_ciudad,
         ));
     }
 
@@ -120,6 +138,29 @@ class ParroquiaController extends AweController {
         if (isset($_POST['ajax']) && $_POST['ajax'] === 'parroquia-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();
+        }
+    }
+    
+    public function actionAjaxGetParroquiasbyCiudad() {
+        if (Yii::app()->request->isAjaxRequest) {
+            if (isset($_POST['ciudad_id']) && $_POST['ciudad_id'] > 0) {
+                $data = Parroquia::model()->findAll(array(
+                    "condition" => "ciudad_id =:ciudad_id ",
+                    "order" => "nombre",
+                    "params" => array(':ciudad_id' => $_POST['ciudad_id'],)
+                ));
+                if ($data) {
+                    $data = CHtml::listData($data, 'id', 'nombre');
+                    echo CHtml::tag('option', array('value' => 0, 'id' => 'p'), '- Parroquias -', true);
+                    foreach ($data as $value => $name) {
+                        echo CHtml::tag('option', array('value' => $value), CHtml::encode($name), true);
+                    }
+                } else {
+                    echo CHtml::tag('option', array('value' => 0), '- No existen opciones -', true);
+                }
+            } else {
+                echo CHtml::tag('option', array('value' => 0, 'id' => 'p'), '- Seleccione una ciudad -', true);
+            }
         }
     }
 
