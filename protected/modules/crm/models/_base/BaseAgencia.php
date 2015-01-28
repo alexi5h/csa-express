@@ -34,8 +34,8 @@ abstract class BaseAgencia extends AweActiveRecord {
 
     public function rules() {
         return array(
-            array('id, nombre, matriz, direccion_id', 'required'),
-            array('id, matriz, direccion_id', 'numerical', 'integerOnly'=>true),
+            array('nombre, matriz, direccion_id', 'required'),
+            array('matriz, direccion_id', 'numerical', 'integerOnly'=>true),
             array('email', 'email'),
             array('nombre', 'length', 'max'=>45),
             array('email', 'length', 'max'=>50),
