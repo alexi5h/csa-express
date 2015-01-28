@@ -32,7 +32,13 @@ class PersonaController extends AweController {
      */
     public function actionCreate() {
         $model = new Persona;
-
+        
+        $modelDireccion = new Direccion;
+        $model_provincia = Provincia::model()->findAll();
+        $model_ciudad = new Ciudad;
+        $model_parroquia = new Parroquia;
+        $model_barrio = new Barrio;
+        
         $this->performAjaxValidation($model, 'persona-form');
 
         if (isset($_POST['Persona'])) {
@@ -48,6 +54,11 @@ class PersonaController extends AweController {
 
         $this->render('create', array(
             'model' => $model,
+            'modelDireccion' => $modelDireccion,
+            'model_provincia' => $model_provincia,
+            'model_ciudad' => $model_ciudad,
+            'model_parroquia' => $model_parroquia,
+            'model_barrio' => $model_barrio,
         ));
     }
 

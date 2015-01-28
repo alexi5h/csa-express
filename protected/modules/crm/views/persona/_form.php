@@ -22,9 +22,8 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
     </div>
     <div class="box-body">
         <?php echo $form->textFieldGroup($model, 'nombres', array('maxlength' => 100)) ?>
-
         <?php echo $form->textFieldGroup($model, 'apellidos', array('maxlength' => 100)) ?>
-          <?php
+        <?php
         echo $form->datePickerGroup($model, 'fecha_nacimiento', array(
             'prepend' => '<i class="fa fa-calendar"></i>',
             'widgetOptions' => array(
@@ -40,8 +39,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
             ),
         ));
         ?>
-        
-          <?php
+        <?php
         echo $form->radioButtonListGroup(
                 $model, 'sexo', array(
             'widgetOptions' => array(
@@ -54,24 +52,9 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
             'inline' => true,
         ));
         ?>
-          <?php echo $form->textFieldGroup($model, 'email', array('maxlength' => 45)) ?>
-
+        <?php echo $form->textFieldGroup($model, 'email', array('maxlength' => 45)) ?>
         <?php echo $form->textFieldGroup($model, 'cedula', array('maxlength' => 20)) ?>
-       
-
-
         <?php echo $form->textFieldGroup($model, 'ruc', array('maxlength' => 20)) ?>
-
-       
-
-        <?php // echo $form->dropDownListGroup($model, 'estado', array('wrapperHtmlOptions' => array('class' => 'col-sm-12',), 'widgetOptions' => array('data' => array('ACTIVO' => 'ACTIVO', 'INACTIVO' => 'INACTIVO',), 'htmlOptions' => array(),))) ?>
-
-      
-
-      
-
-        <?php // echo $form->dropDownListGroup($model, 'tipo', array('wrapperHtmlOptions' => array('class' => 'col-sm-12',), 'widgetOptions' => array('data' => array('A' => 'A', 'L' => 'L',), 'htmlOptions' => array(),))) ?>
-
         <?php
         echo $form->radioButtonListGroup(
                 $model, 'tipo', array(
@@ -85,8 +68,104 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
             'inline' => true,
         ));
         ?>
+        <div id="contenedor1">
+            <div class="control-group">
+                <label class="control-label"><?php echo $form->labelEx($model, 'direccion_id') ?></label>
+                <div class="controls">
+                    <?php
+                    echo $form->textFieldGroup($modelDireccion, 'calle_1')
+                    ?>  
+                </div>
+            </div>
+            <div class="control-group" >
+                <div class="controls controls-row">
+                    <?php echo $form->textFieldGroup($modelDireccion, 'calle_2') ?>  
+                </div>
+            </div>
+            <div class="control-group" >
+                <div class="controls controls-row">
+                    <?php echo $form->textFieldGroup($modelDireccion, 'numero') ?>  
+                </div>
+            </div>
+            <div class="control-group" >
+                <div class="controls controls-row">
+                    <?php echo $form->textFieldGroup($modelDireccion, 'codigo_postal') ?>  
+                </div>
+            </div>
+            <div class="controls controls-row">
+                <div class="control-group">
+                    <?php
+                    echo $form->select2Group(
+                            $modelDireccion, 'provincia_id', array(
+                        'widgetOptions' => array(
+                            'asDropDownList' => true,
+                            'data' => CHtml::listData($model_provincia, 'id', 'nombre'),
+                            'options' => array(
+                                'placeholder' => '-- Seleccione --',
+                            ),
+                        ))
+                    );
+                    ?>
+                    <?php echo $form->error($modelDireccion, 'provincia_id'); ?>
+                </div>
+                <div class="control-group">
+                    <?php
+                    echo $form->select2Group(
+                            $modelDireccion, 'ciudad_id', array(
+                        'widgetOptions' => array(
+                            'asDropDownList' => true,
+                            'data' => CHtml::listData($model_ciudad, 'id', 'nombre'),
+                            'options' => array(
+                                'placeholder' => '-- Seleccione --',
+                            )
+                        ))
+                    );
+                    ?>
+                    <?php echo $form->error($modelDireccion, 'ciudad_id'); ?>
+                </div>
+            </div>
+            <div class="controls controls-row">
+                <div class="control-group">
+                    <?php
+                    echo $form->select2Group(
+                            $modelDireccion, 'parroquia_id', array(
+                        'widgetOptions' => array(
+                            'asDropDownList' => true,
+                            'data' => CHtml::listData($model_parroquia, 'id', 'nombre'),
+                            'options' => array(
+                                'placeholder' => '-- Seleccione --',
+                            )
+                        ))
+                    );
+                    ?>
+                    <?php echo $form->error($modelDireccion, 'parroquia_id'); ?>
+                </div>
 
-        <?php // echo $form->textFieldGroup($model, 'usuario_creacion_id')  ?>
+                <div class="control-group  success">
+                    <?php
+                    echo $form->select2Group(
+                            $modelDireccion, 'barrio_id', array(
+                        'widgetOptions' => array(
+                            'asDropDownList' => true,
+                            'data' => CHtml::listData($model_barrio, 'id', 'nombre'),
+                            'options' => array(
+                                'placeholder' => '-- Seleccione --',
+                            )
+                        ))
+                    );
+                    ?>
+                    <?php echo $form->error($modelDireccion, 'barrio_id'); ?>
+                </div>
+            </div>
+            <div class="control-group" >
+                <div class="controls controls-row">
+                    <div class="control-group span8">
+                        <?php echo $form->textAreaGroup($modelDireccion, 'referencia', array('class' => 'span12', 'placeholder' => 'Referencia')) ?>
+
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
     <div class="box-footer">
