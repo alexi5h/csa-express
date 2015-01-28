@@ -24,30 +24,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         <?php echo $form->textFieldGroup($model, 'nombres', array('maxlength' => 100)) ?>
 
         <?php echo $form->textFieldGroup($model, 'apellidos', array('maxlength' => 100)) ?>
-
-        <?php echo $form->textFieldGroup($model, 'cedula', array('maxlength' => 20)) ?>
-
-        <?php echo $form->textFieldGroup($model, 'ruc', array('maxlength' => 20)) ?>
-
-        <?php echo $form->textFieldGroup($model, 'email', array('maxlength' => 45)) ?>
-
-        <?php // echo $form->dropDownListGroup($model, 'estado', array('wrapperHtmlOptions' => array('class' => 'col-sm-12',), 'widgetOptions' => array('data' => array('ACTIVO' => 'ACTIVO', 'INACTIVO' => 'INACTIVO',), 'htmlOptions' => array(),))) ?>
-
-        <?php
-        echo $form->radioButtonListGroup(
-                $model, 'sexo', array(
-            'widgetOptions' => array(
-                'data' => array('M' => 'Masculino', 'F' => 'Femenino',),
-                'htmlOptions' => array(
-                    'template' => '{beginLabel}{input} {labelTitle}{endLabel}',
-                    'separator' => "<label class='radio-inline'>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</label>",
-                ),
-            ),
-            'inline' => true,
-        ));
-        ?>
-
-        <?php
+          <?php
         echo $form->datePickerGroup($model, 'fecha_nacimiento', array(
             'prepend' => '<i class="fa fa-calendar"></i>',
             'widgetOptions' => array(
@@ -63,6 +40,35 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
             ),
         ));
         ?>
+        
+          <?php
+        echo $form->radioButtonListGroup(
+                $model, 'sexo', array(
+            'widgetOptions' => array(
+                'data' => array('M' => 'Masculino', 'F' => 'Femenino',),
+                'htmlOptions' => array(
+                    'template' => '{beginLabel}{input} {labelTitle}{endLabel}',
+                    'separator' => "<label class='radio-inline'>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</label>",
+                ),
+            ),
+            'inline' => true,
+        ));
+        ?>
+          <?php echo $form->textFieldGroup($model, 'email', array('maxlength' => 45)) ?>
+
+        <?php echo $form->textFieldGroup($model, 'cedula', array('maxlength' => 20)) ?>
+       
+
+
+        <?php echo $form->textFieldGroup($model, 'ruc', array('maxlength' => 20)) ?>
+
+       
+
+        <?php // echo $form->dropDownListGroup($model, 'estado', array('wrapperHtmlOptions' => array('class' => 'col-sm-12',), 'widgetOptions' => array('data' => array('ACTIVO' => 'ACTIVO', 'INACTIVO' => 'INACTIVO',), 'htmlOptions' => array(),))) ?>
+
+      
+
+      
 
         <?php // echo $form->dropDownListGroup($model, 'tipo', array('wrapperHtmlOptions' => array('class' => 'col-sm-12',), 'widgetOptions' => array('data' => array('A' => 'A', 'L' => 'L',), 'htmlOptions' => array(),))) ?>
 
