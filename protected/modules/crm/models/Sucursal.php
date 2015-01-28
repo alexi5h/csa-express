@@ -14,7 +14,7 @@ class Sucursal extends BaseSucursal
 
     public static function label($n = 1)
     {
-        return Yii::t('app', 'Sucursal|Sucursals', $n);
+        return Yii::t('app', 'Sucursal|Sucursales', $n);
     }
 
 }
