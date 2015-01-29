@@ -9,7 +9,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
     'id' => 'persona-form',
     'enableAjaxValidation' => true,
     'clientOptions' => array('validateOnSubmit' => true, 'validateOnChange' => false,),
-    'enableClientValidation' => false,
+    'enableClientValidation' => true,
         ));
 ?>
 
@@ -160,8 +160,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
             <div class="control-group" >
                 <div class="controls controls-row">
                     <div class="control-group span8">
-                        <?php echo $form->textAreaGroup($modelDireccion, 'referencia', array('class' => 'span12', 'placeholder' => 'Referencia')) ?>
-
+                        <?php echo $form->textAreaGroup($modelDireccion, 'referencia') ?>
                     </div>
                 </div>
             </div>

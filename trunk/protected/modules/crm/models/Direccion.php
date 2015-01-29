@@ -9,6 +9,8 @@ class Direccion extends BaseDireccion {
 
     public $ciudad_id;
     public $provincia_id;
+    public $parroquia_id;
+    public $barrio_id;
 
     /**
      * @return Direccion

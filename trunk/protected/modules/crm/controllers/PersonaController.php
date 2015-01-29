@@ -32,21 +32,32 @@ class PersonaController extends AweController {
      */
     public function actionCreate() {
         $model = new Persona;
-        
+
         $modelDireccion = new Direccion;
         $model_provincia = Provincia::model()->findAll();
         $model_ciudad = new Ciudad;
         $model_parroquia = new Parroquia;
         $model_barrio = new Barrio;
-        
+
+        $this->performAjaxValidation($modelDireccion, 'persona-form');
         $this->performAjaxValidation($model, 'persona-form');
 
         if (isset($_POST['Persona'])) {
             $model->attributes = $_POST['Persona'];
+
             $model->estado = Persona::ESTADO_ACTIVO;
             $model->usuario_creacion_id = Yii::app()->user->id;
             $model->fecha_creacion = Util::FechaActual();
             $model->fecha_nacimiento = Util::FormatDate($model->fecha_nacimiento, 'Y-m-d');
+
+            $arrayDireccion = $_POST['Direccion'];
+            if ($arrayDireccion['barrio_id'] == '0') {
+                $arrayDireccion['barrio_id'] = '';
+            }
+            $modelDireccion->attributes = $arrayDireccion;
+            if ($modelDireccion->save()) {
+                $model->direccion_id = $modelDireccion->id;
+            }
             if ($model->save()) {
                 $this->redirect(array('admin'));
             }
@@ -71,12 +82,55 @@ class PersonaController extends AweController {
         $model = $this->loadModel($id);
         $model->fecha_nacimiento = Util::FormatDate($model->fecha_nacimiento, 'd-m-Y');
 
+        $modelDireccion = Direccion::model()->findByPk($model->direccion_id);
+        $model_provincia = new Provincia;
+        $model_provincia = Provincia::model()->findAll();
+        $provincia_update = Provincia::model()->findByPk($modelDireccion->parroquia->ciudad->provincia_id);
+        $modelDireccion->provincia_id = $provincia_update->id;
+
+        $model_ciudad = Ciudad::model()->findAll(array(
+            "condition" => "provincia_id =:provincia_id ",
+            "order" => "nombre",
+            "params" => array(':provincia_id' => $modelDireccion->provincia_id,)
+        ));
+        $ciudad_update = Ciudad::model()->findByPk($modelDireccion->parroquia->ciudad_id);
+        $modelDireccion->ciudad_id = $ciudad_update->id;
+
+        $model_parroquia = Parroquia::model()->findAll(array(
+            "condition" => "ciudad_id =:ciudad_id ",
+            "order" => "nombre",
+            "params" => array(':ciudad_id' => $modelDireccion->ciudad_id,)
+        ));
+        $parroquia_update = Parroquia::model()->findByPk($modelDireccion->parroquia_id);
+        $modelDireccion->parroquia_id = $parroquia_update->id;
+
+        $model_barrio = Barrio::model()->findAll(array(
+            "condition" => "parroquia_id =:parroquia_id ",
+            "order" => "nombre",
+            "params" => array(':parroquia_id' => $modelDireccion->parroquia_id,)
+        ));
+        if (isset($modelDireccion->barrio_id)) {
+            $barrio_update = Barrio::model()->findByPk($modelDireccion->barrio_id);
+            $modelDireccion->barrio_id = $barrio_update->id;
+        }
+
+
+        $this->performAjaxValidation($modelDireccion, 'persona-form');
         $this->performAjaxValidation($model, 'persona-form');
 
         if (isset($_POST['Persona'])) {
             $model->attributes = $_POST['Persona'];
             $model->fecha_nacimiento = Util::FormatDate($model->fecha_nacimiento, 'Y-m-d');
             $model->fecha_actualizacion = Util::FechaActual();
+
+            $arrayDireccion = $_POST['Direccion'];
+            if ($arrayDireccion['barrio_id'] == '0') {
+                $arrayDireccion['barrio_id'] = '';
+            }
+            $modelDireccion->attributes = $arrayDireccion;
+            if ($modelDireccion->save()) {
+                $model->direccion_id = $modelDireccion->id;
+            }
             if ($model->save()) {
                 $this->redirect(array('admin'));
             }
@@ -84,6 +138,11 @@ class PersonaController extends AweController {
 
         $this->render('update', array(
             'model' => $model,
+            'modelDireccion' => $modelDireccion,
+            'model_provincia' => $model_provincia,
+            'model_ciudad' => $model_ciudad,
+            'model_parroquia' => $model_parroquia,
+            'model_barrio' => $model_barrio,
         ));
     }
 

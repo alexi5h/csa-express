@@ -8,6 +8,11 @@ class Persona extends BasePersona {
     const ESTADO_INACTIVO = 'INACTIVO';
 
     private $nombre_formato;
+    
+    public $provincia_id;
+    public $ciudad_id;
+    public $parroquia_id;
+    public $barrio_id;
 
     /**
      * @return Persona

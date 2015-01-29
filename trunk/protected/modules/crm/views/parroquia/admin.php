@@ -26,10 +26,10 @@ $this->menu = array(
             'dataProvider' => $model->search(),
             'columns' => array(
                 'nombre',
-                array(
-                    'name' => 'estado',
-                    'filter' => array('ACTIVO' => 'ACTIVO', 'INACTIVO' => 'INACTIVO',),
-                ),
+//                array(
+//                    'name' => 'estado',
+//                    'filter' => array('ACTIVO' => 'ACTIVO', 'INACTIVO' => 'INACTIVO',),
+//                ),
                 array(
                     'name' => 'ciudad_id',
                     'value' => 'isset($data->ciudad) ? $data->ciudad : null',
