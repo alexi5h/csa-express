@@ -140,7 +140,7 @@ class ParroquiaController extends AweController {
             Yii::app()->end();
         }
     }
-    
+
     public function actionAjaxGetParroquiasbyCiudad() {
         if (Yii::app()->request->isAjaxRequest) {
             if (isset($_POST['ciudad_id']) && $_POST['ciudad_id'] > 0) {

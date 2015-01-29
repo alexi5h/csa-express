@@ -62,7 +62,7 @@ class BarrioController extends AweController {
      */
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
-        
+
         $model_provincia = new Provincia;
         $model_provincia = Provincia::model()->findAll();
         $provincia_update = Provincia::model()->findByPk($model->parroquia->ciudad->provincia_id);
@@ -75,7 +75,7 @@ class BarrioController extends AweController {
         ));
         $ciudad_update = Ciudad::model()->findByPk($model->parroquia->ciudad_id);
         $model->ciudad_id = $ciudad_update->id;
-        
+
         $model_parroquia = Parroquia::model()->findAll(array(
             "condition" => "ciudad_id =:ciudad_id ",
             "order" => "nombre",
@@ -152,6 +152,29 @@ class BarrioController extends AweController {
         if (isset($_POST['ajax']) && $_POST['ajax'] === 'barrio-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();
+        }
+    }
+
+    public function actionAjaxGetBarriosbyParroquia() {
+        if (Yii::app()->request->isAjaxRequest) {
+            if (isset($_POST['parroquia_id']) && $_POST['parroquia_id'] > 0) {
+                $data = Barrio::model()->findAll(array(
+                    "condition" => "parroquia_id =:parroquia_id ",
+                    "order" => "nombre",
+                    "params" => array(':parroquia_id' => $_POST['parroquia_id'],)
+                ));
+                if ($data) {
+                    $data = CHtml::listData($data, 'id', 'nombre');
+                    echo CHtml::tag('option', array('value' => 0, 'id' => 'p'), '- Barrios -', true);
+                    foreach ($data as $value => $name) {
+                        echo CHtml::tag('option', array('value' => $value), CHtml::encode($name), true);
+                    }
+                } else {
+                    echo CHtml::tag('option', array('value' => 0), '- No existen opciones -', true);
+                }
+            } else {
+                echo CHtml::tag('option', array('value' => 0, 'id' => 'p'), '- Seleccione una parroquia -', true);
+            }
         }
     }
 
