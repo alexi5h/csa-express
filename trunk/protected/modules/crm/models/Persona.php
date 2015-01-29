@@ -28,6 +28,11 @@ class Persona extends BasePersona {
     public function attributeLabels() {
         return array_merge(parent::attributeLabels(), array(
             'nombre_formato' => Yii::t('app', 'Nombre Completo'),
+            'cedula' => Yii::t('app', 'Cédula'),
+             'ruc' => Yii::t('app', 'RUC'),
+          
+           
+            
         ));
     }
 

@@ -26,14 +26,23 @@ $this->menu = array(
             'dataProvider' => $model->activos()->search(),
             'columns' => array(
                 'nombre',
-                array(
-                    'name' => 'estado',
-                    'filter' => array('ACTIVO' => 'ACTIVO', 'INACTIVO' => 'INACTIVO',),
-                ),
+               
                 array(
                     'name' => 'parroquia_id',
                     'value' => 'isset($data->parroquia) ? $data->parroquia : null',
                     'filter' => CHtml::listData(Parroquia::model()->findAll(), 'id', Parroquia::representingColumn()),
+                ),
+                
+                 array(
+                    'name' => 'ciudad_id',
+                    'value' => 'isset($data->parroquia) ? $data->parroquia->ciudad : null',
+                     
+                ),
+                
+                 array(
+                    'name' => 'provincia_id',
+                    'value' => 'isset($data->parroquia) ? $data->parroquia->ciudad->provincia : null',
+                     
                 ),
                 array(
                     'class' => 'CButtonColumn',
