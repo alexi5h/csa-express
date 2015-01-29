@@ -26,10 +26,7 @@ $this->menu = array(
             'dataProvider' => $model->activos()->search(),
             'columns' => array(
                 'nombre',
-                array(
-                    'name' => 'estado',
-                    'filter' => array('ACTIVO' => 'ACTIVO', 'INACTIVO' => 'INACTIVO',),
-                ),
+              
                 array(
                     'name' => 'zona',
                     'filter' => array('SUR' => 'SUR', 'CENTRO' => 'CENTRO', 'NORTE' => 'NORTE',),

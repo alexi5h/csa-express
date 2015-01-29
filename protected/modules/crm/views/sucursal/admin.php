@@ -27,10 +27,7 @@ $this->menu = array(
             'columns' => array(
                 'nombre',
                 'email',
-                array(
-                    'name' => 'estado',
-                    'filter' => array('ACTIVO' => 'ACTIVO', 'INACTIVO' => 'INACTIVO',),
-                ),
+               
                 array(
                     'name' => 'agencia_id',
                     'value' => 'isset($data->agencia) ? $data->agencia : null',

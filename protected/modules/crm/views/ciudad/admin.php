@@ -26,19 +26,18 @@ $this->menu = array(
             'dataProvider' => $model->search(),
             'columns' => array(
                 'nombre',
-                array(
-                    'name' => 'estado',
-                    'filter' => array('ACTIVO' => 'ACTIVO', 'INACTIVO' => 'INACTIVO',),
-                ),
-                array(
-                    'name' => 'tipo',
-                    'filter' => array('PRINCIPAL' => 'PRINCIPAL', 'SECUNDARIA' => 'SECUNDARIA', 'TRAYECTO ESPECIAL' => 'TRAYECTO ESPECIAL',),
-                ),
-                array(
+                
+               array(
                     'name' => 'provincia_id',
                     'value' => 'isset($data->provincia) ? $data->provincia : null',
                     'filter' => CHtml::listData(Provincia::model()->findAll(), 'id', Provincia::representingColumn()),
                 ),
+                
+                array(
+                    'name' => 'tipo',
+                    'filter' => array('PRINCIPAL' => 'PRINCIPAL', 'SECUNDARIA' => 'SECUNDARIA', 'TRAYECTO ESPECIAL' => 'TRAYECTO ESPECIAL',),
+                ),
+               
                 array(
                     'class' => 'CButtonColumn',
                     'template' => '{update} {delete}',

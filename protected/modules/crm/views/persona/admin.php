@@ -34,6 +34,8 @@ $this->menu = array(
                     'value' => '$data->nombre_formato',
                     'type' => 'raw'
                 ),
+               
+                
                 'cedula',
 //                'ruc',
                 'email',
