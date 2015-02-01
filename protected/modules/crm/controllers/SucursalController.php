@@ -32,11 +32,27 @@ class SucursalController extends AweController {
      */
     public function actionCreate() {
         $model = new Sucursal;
+        $modelDireccion = new Direccion;
+        $model_provincia = Provincia::model()->findAll();
+        $model_ciudad = new Ciudad;
+        $model_parroquia = new Parroquia;
+        $model_barrio = new Barrio;
 
+        $this->performAjaxValidation($modelDireccion, 'agencia-form');
         $this->performAjaxValidation($model, 'sucursal-form');
 
         if (isset($_POST['Sucursal'])) {
             $model->attributes = $_POST['Sucursal'];
+            $model->estado = Sucursal::ESTADO_ACTIVO;
+
+            $arrayDireccion = $_POST['Direccion'];
+            if ($arrayDireccion['barrio_id'] == '0') {
+                $arrayDireccion['barrio_id'] = '';
+            }
+            $modelDireccion->attributes = $arrayDireccion;
+            if ($modelDireccion->save()) {
+                $model->direccion_id = $modelDireccion->id;
+            }
             if ($model->save()) {
                 $this->redirect(array('admin'));
             }
@@ -44,6 +60,11 @@ class SucursalController extends AweController {
 
         $this->render('create', array(
             'model' => $model,
+            'modelDireccion' => $modelDireccion,
+            'model_provincia' => $model_provincia,
+            'model_ciudad' => $model_ciudad,
+            'model_parroquia' => $model_parroquia,
+            'model_barrio' => $model_barrio,
         ));
     }
 
@@ -55,10 +76,50 @@ class SucursalController extends AweController {
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
 
+        $modelDireccion = Direccion::model()->findByPk($model->direccion_id);
+        $model_provincia = new Provincia;
+        $model_provincia = Provincia::model()->findAll();
+        $provincia_update = Provincia::model()->findByPk($modelDireccion->parroquia->ciudad->provincia_id);
+        $modelDireccion->provincia_id = $provincia_update->id;
+
+        $model_ciudad = Ciudad::model()->findAll(array(
+            "condition" => "provincia_id =:provincia_id ",
+            "order" => "nombre",
+            "params" => array(':provincia_id' => $modelDireccion->provincia_id,)
+        ));
+        $ciudad_update = Ciudad::model()->findByPk($modelDireccion->parroquia->ciudad_id);
+        $modelDireccion->ciudad_id = $ciudad_update->id;
+
+        $model_parroquia = Parroquia::model()->findAll(array(
+            "condition" => "ciudad_id =:ciudad_id ",
+            "order" => "nombre",
+            "params" => array(':ciudad_id' => $modelDireccion->ciudad_id,)
+        ));
+        $parroquia_update = Parroquia::model()->findByPk($modelDireccion->parroquia_id);
+        $modelDireccion->parroquia_id = $parroquia_update->id;
+
+        $model_barrio = Barrio::model()->findAll(array(
+            "condition" => "parroquia_id =:parroquia_id ",
+            "order" => "nombre",
+            "params" => array(':parroquia_id' => $modelDireccion->parroquia_id,)
+        ));
+        if (isset($modelDireccion->barrio_id)) {
+            $barrio_update = Barrio::model()->findByPk($modelDireccion->barrio_id);
+            $modelDireccion->barrio_id = $barrio_update->id;
+        }
+
         $this->performAjaxValidation($model, 'sucursal-form');
 
         if (isset($_POST['Sucursal'])) {
             $model->attributes = $_POST['Sucursal'];
+            $arrayDireccion = $_POST['Direccion'];
+            if ($arrayDireccion['barrio_id'] == '0') {
+                $arrayDireccion['barrio_id'] = '';
+            }
+            $modelDireccion->attributes = $arrayDireccion;
+            if ($modelDireccion->save()) {
+                $model->direccion_id = $modelDireccion->id;
+            }
             if ($model->save()) {
                 $this->redirect(array('admin'));
             }
@@ -66,6 +127,11 @@ class SucursalController extends AweController {
 
         $this->render('update', array(
             'model' => $model,
+            'modelDireccion' => $modelDireccion,
+            'model_provincia' => $model_provincia,
+            'model_ciudad' => $model_ciudad,
+            'model_parroquia' => $model_parroquia,
+            'model_barrio' => $model_barrio,
         ));
     }
 

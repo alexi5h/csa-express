@@ -28,7 +28,11 @@ $this->menu = array(
             'columns' => array(
                 'nombre',
                 'email',
-                'matriz',
+                array(
+                    'name' => 'matriz',
+                    'value' => '$data->matriz=="1" ? "<i class=\"fa fa-check\"></i>" : ""',
+                    'type' => 'raw',
+                ),
                 array(
                     'name' => 'direccion_id',
                     'value' => 'isset($data->direccion) ? $data->direccion : null',
@@ -46,20 +50,20 @@ $this->menu = array(
                     }',
                     'buttons' => array(
                         'update' => array(
-                            'label' => '<button class="btn btn-primary"><i class="icon-pencil"></i></button>',
+                            'label' => '<button class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i></button>',
                             'options' => array('title' => 'Actualizar'),
                             'imageUrl' => false,
                         //'visible' => 'Util::checkAccess(array("action_incidenciaPrioridad_update"))'
                         ),
                         'delete' => array(
-                            'label' => '<button class="btn btn-danger"><i class="icon-trash"></i></button>',
+                            'label' => '<button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>',
                             'options' => array('title' => 'Eliminar'),
                             'imageUrl' => false,
                         //'visible' => 'Util::checkAccess(array("action_incidenciaPrioridad_delete"))'
                         ),
                     ),
                     'htmlOptions' => array(
-                        'width' => '80px'
+                        'width' => '90px'
                     )
                 ),
             ),
