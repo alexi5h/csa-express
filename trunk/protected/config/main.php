@@ -20,9 +20,13 @@ return array(
         'application.modules.cruge.components.*',
         'application.modules.cruge.extensions.crugemailer.*',
         'application.modules.crm.models.*',
+        'application.modules.productos.models.*',
+        'application.modules.trayectorias.models.*',
     ),
     'modules' => array(
         'crm',
+        'productos',
+        'trayectorias',
         // uncomment the following to enable the Gii tool
         'gii' => array(
             'class' => 'system.gii.GiiModule',

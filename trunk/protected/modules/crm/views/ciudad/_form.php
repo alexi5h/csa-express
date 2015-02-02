@@ -21,6 +21,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
     <div class="box-body">
         <?php echo $form->textFieldGroup($model, 'nombre', array('maxlength' => 45)) ?>
         <?php echo $form->dropDownListGroup($model, 'tipo', array('wrapperHtmlOptions' => array('class' => 'col-sm-12',), 'widgetOptions' => array('data' => array('PRINCIPAL' => 'PRINCIPAL', 'SECUNDARIA' => 'SECUNDARIA', 'TRAYECTO ESPECIAL' => 'TRAYECTO ESPECIAL',), 'htmlOptions' => array(),))) ?>
+        <?php echo $form->textFieldGroup($model, 'tiempo_entrega') ?>
         <?php
         echo $form->select2Group(
                 $model, 'provincia_id', array(
