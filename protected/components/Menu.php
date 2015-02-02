@@ -9,6 +9,14 @@ class Menu {
         $items = array(
             array('label' => '<i class="fa fa-dashboard"></i> Dashboard', 'url' => Yii::app()->homeUrl),
             array('label' => '<i class="fa fa-users"></i> ' . Persona::label(2), 'url' => array('/crm/persona/admin'), 'access' => 'action_persona_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'persona')),
+            array('label' => '<i class="fa fa-globe"></i>  Productos <i class="fa pull-right fa-angle-left"></i>', 'url' => '#', 'items' => array(
+                    array('label' => '<i class="fa fa-angle-double-right"></i> ' . Producto::label(2), 'url' => array('/productos/producto/admin'), 'access' => 'action_producto_admin', 'active_rules' => array('module' => 'productos', 'controller' => 'producto')),
+                    array('label' => '<i class="fa fa-angle-double-right"></i> ' . ProductoCategoria::label(2), 'url' => array('/productos/productoCategoria/admin'), 'access' => 'action_productoCategoria_admin', 'active_rules' => array('module' => 'productos', 'controller' => 'productoCategoria')),
+                )),
+            array('label' => '<i class="fa fa-globe"></i>  Trayectorias <i class="fa pull-right fa-angle-left"></i>', 'url' => '#', 'items' => array(
+                    array('label' => '<i class="fa fa-angle-double-right"></i> ' . Trayectoria::label(2), 'url' => array('/trayectorias/trayectoria/admin'), 'access' => 'action_trayectoria_admin', 'active_rules' => array('module' => 'trayectorias', 'controller' => 'trayectoria')),
+                    array('label' => '<i class="fa fa-angle-double-right"></i> ' . TrayectoriaProducto::label(2), 'url' => array('/trayectorias/trayectoriaProducto/admin'), 'access' => 'action_trayectoriaProducto_admin', 'active_rules' => array('module' => 'trayectorias', 'controller' => 'trayectoriaProducto')),
+                )),
 //            array('label' => '<i class="icon-money"></i> ' . Ahorro::label(2), 'url' => array('/ahorro/ahorro/admin'), 'access' => 'action_ahorro_admin', 'active_rules' => array('module' => 'ahorro', 'controller' => 'ahorro')),
 //            array('label' => '<i class="icon-usd"></i> ' . AhorroRetiro::label(2), 'url' => array('/ahorro/ahorroRetiro/admin'), 'access' => 'action_ahorroRetiro_admin', 'active_rules' => array('module' => 'ahorro', 'controller' => 'ahorroRetiro')),
 //            array('label' => '<i class="icon-shopping-cart"></i> '.Credito::label(2), 'url' => array('/credito/credito/admin'), 'access' => 'action_credito_admin', 'active_rules' => array('module' => 'credito', 'controller' => 'credito')),
@@ -54,6 +62,9 @@ class Menu {
             array('label' => '<i class="fa fa-globe"></i>  Entidades <i class="fa pull-right fa-angle-left"></i>', 'url' => '#', 'items' => array(
                     array('label' => '<i class="fa fa-angle-double-right"></i> Agencias', 'url' => array('/crm/agencia/admin'), 'access' => 'action_agencia_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'agencia')),
                     array('label' => '<i class="fa fa-angle-double-right"></i> Sucursales', 'url' => array('/crm/sucursal/admin'), 'access' => 'action_sucursal_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'sucursal')),
+                )),
+            array('label' => '<i class="fa fa-globe"></i>  Trayectorias <i class="fa pull-right fa-angle-left"></i>', 'url' => '#', 'items' => array(
+                    array('label' => '<i class="fa fa-angle-double-right"></i> ' . TrayectoriaEtapa::label(2), 'url' => array('/trayectorias/trayectoriaEtapa/admin'), 'access' => 'action_trayectoriaEtapa_admin', 'active_rules' => array('module' => 'trayectorias', 'controller' => 'trayectoriaEtapa')),
                 )),
 //            array('label' => '<i class="icon-dollar"></i>  Entidades', 'url' => '#', 'items' => array(
 //                    array('label' => 'Entidad Bancaria', 'url' => array('/crm/entidadBancaria/admin'), 'access' => 'action_entidadBancaria_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'entidadBancaria')),

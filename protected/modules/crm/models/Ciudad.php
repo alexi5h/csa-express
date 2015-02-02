@@ -18,6 +18,12 @@ class Ciudad extends BaseCiudad {
         return Yii::t('app', 'Ciudad|Ciudades', $n);
     }
     
+    public function relations() {
+        return array_merge(parent::relations(),array(
+            'trayectorias' => array(self::HAS_MANY, 'Trayectoria', 'ciudad_origen_id'),
+        ));
+    }
+    
     public function scopes() {
         return array(
             'activos' => array(

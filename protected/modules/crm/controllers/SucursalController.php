@@ -32,6 +32,7 @@ class SucursalController extends AweController {
      */
     public function actionCreate() {
         $model = new Sucursal;
+        $modelAgencia =  Agencia::model()->findAll();
         $modelDireccion = new Direccion;
         $model_provincia = Provincia::model()->findAll();
         $model_ciudad = new Ciudad;
@@ -60,6 +61,7 @@ class SucursalController extends AweController {
 
         $this->render('create', array(
             'model' => $model,
+            'modelAgencia' => $modelAgencia,
             'modelDireccion' => $modelDireccion,
             'model_provincia' => $model_provincia,
             'model_ciudad' => $model_ciudad,
@@ -75,6 +77,7 @@ class SucursalController extends AweController {
      */
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
+        $modelAgencia =  Agencia::model()->findAll();
 
         $modelDireccion = Direccion::model()->findByPk($model->direccion_id);
         $model_provincia = new Provincia;
@@ -127,6 +130,7 @@ class SucursalController extends AweController {
 
         $this->render('update', array(
             'model' => $model,
+            'modelAgencia' => $modelAgencia,
             'modelDireccion' => $modelDireccion,
             'model_provincia' => $model_provincia,
             'model_ciudad' => $model_ciudad,

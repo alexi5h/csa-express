@@ -13,6 +13,7 @@
  * @property string $nombre
  * @property string $estado
  * @property string $tipo
+ * @property integer $tiempo_entrega
  * @property integer $provincia_id
  *
  * @property Provincia $provincia
@@ -35,13 +36,14 @@ abstract class BaseCiudad extends AweActiveRecord {
     public function rules() {
         return array(
             array('nombre, estado, tipo, provincia_id', 'required'),
-            array('provincia_id', 'numerical', 'integerOnly'=>true),
+            array('tiempo_entrega, provincia_id', 'numerical', 'integerOnly'=>true),
             array('nombre', 'length', 'max'=>45),
             array('estado', 'length', 'max'=>8),
             array('tipo', 'length', 'max'=>17),
             array('estado', 'in', 'range' => array('ACTIVO','INACTIVO')), // enum,
             array('tipo', 'in', 'range' => array('PRINCIPAL','SECUNDARIA','TRAYECTO ESPECIAL')), // enum,
-            array('id, nombre, estado, tipo, provincia_id', 'safe', 'on'=>'search'),
+            array('tiempo_entrega', 'default', 'setOnEmpty' => true, 'value' => null),
+            array('id, nombre, estado, tipo, tiempo_entrega, provincia_id', 'safe', 'on'=>'search'),
         );
     }
 
@@ -61,6 +63,7 @@ abstract class BaseCiudad extends AweActiveRecord {
                 'nombre' => Yii::t('app', 'Nombre'),
                 'estado' => Yii::t('app', 'Estado'),
                 'tipo' => Yii::t('app', 'Tipo'),
+                'tiempo_entrega' => Yii::t('app', 'Tiempo Entrega'),
                 'provincia_id' => Yii::t('app', 'Provincia'),
                 'provincia' => null,
                 'parroquias' => null,
@@ -74,6 +77,7 @@ abstract class BaseCiudad extends AweActiveRecord {
         $criteria->compare('nombre', $this->nombre, true);
         $criteria->compare('estado', $this->estado, true);
         $criteria->compare('tipo', $this->tipo, true);
+        $criteria->compare('tiempo_entrega', $this->tiempo_entrega);
         $criteria->compare('provincia_id', $this->provincia_id);
 
         return new CActiveDataProvider($this, array(

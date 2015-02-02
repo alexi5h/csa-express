@@ -24,7 +24,19 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
 
         <?php echo $form->textFieldGroup($model, 'email', array('maxlength' => 50)) ?>
 
-        <?php echo $form->dropDownListGroup($model, 'agencia_id', array('wrapperHtmlOptions' => array('class' => 'col-sm-12',), 'widgetOptions' => array('data' => array('' => ' -- Seleccione -- ') + CHtml::listData(Agencia::model()->findAll(), 'id', Agencia::representingColumn()), 'htmlOptions' => array(),))) ?>
+        <?php
+        echo $form->select2Group(
+                $model, 'agencia_id', array(
+            'widgetOptions' => array(
+                'asDropDownList' => true,
+                'data' => CHtml::listData($modelAgencia, 'id', 'nombre'),
+                'options' => array(
+                    'placeholder' => '-- Seleccione --',
+                ),
+            ))
+        );
+        ?>
+        <?php // echo $form->dropDownListGroup($model, 'agencia_id', array('wrapperHtmlOptions' => array('class' => 'col-sm-12',), 'widgetOptions' => array('data' => array('' => ' -- Seleccione -- ') + CHtml::listData(Agencia::model()->findAll(), 'id', Agencia::representingColumn()), 'htmlOptions' => array(),))) ?>
 
         <div id="contenedor1">
             <div class="control-group">

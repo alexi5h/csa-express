@@ -16,7 +16,7 @@
         <!-- jvectormap -->
         <link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
         <!-- Morris chart -->
-        <!--<link href="<?php //echo Yii::app()->theme->baseUrl;   ?>/css/morris/morris.css" rel="stylesheet" type="text/css" />-->
+        <!--<link href="<?php //echo Yii::app()->theme->baseUrl;    ?>/css/morris/morris.css" rel="stylesheet" type="text/css" />-->
         <!--<link rel="stylesheet" type="text/css" href="../../css/bootstrap-wysihtml5/bootstrap3-wysihtml5.css" />-->
 
         <script>
@@ -54,13 +54,13 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
-<!--                                <li class="user-header">
-                                    <img src="<?php // echo Yii::app()->theme->baseUrl; ?>/img/avatar3.png" class="img-circle" alt="User Image" />
-                                    <p>
-                                        <?php // echo Yii::app()->user->name ? Yii::app()->user->name : "Guest" ?>
-                                        <small>Member since Nov. 2012</small>
-                                    </p>
-                                </li>-->
+                                <!--                                <li class="user-header">
+                                                                    <img src="<?php // echo Yii::app()->theme->baseUrl;  ?>/img/avatar3.png" class="img-circle" alt="User Image" />
+                                                                    <p>
+                                <?php // echo Yii::app()->user->name ? Yii::app()->user->name : "Guest" ?>
+                                                                        <small>Member since Nov. 2012</small>
+                                                                    </p>
+                                                                </li>-->
                                 <?php if (!Yii::app()->user->isGuest): ?>
                                     <li class="gestion-user"><?php echo CHtml::link('<i class="fa fa-user"></i>&nbsp;&nbsp;Mi Cuenta', array('/cruge/ui/editprofile')) ?></a></li>
                                     <?php if (Yii::app()->user->checkAccess('admin')): ?>
@@ -82,25 +82,25 @@
                 <!-- sidebar: style can be found in sidebar.less -->
                 <section class="sidebar">
                     <!-- Sidebar user panel -->
-<!--                    <div class="user-panel">
-                        <div class="pull-left image">
-                            <img src="<?php // echo Yii::app()->theme->baseUrl; ?>/img/avatar3.png" class="img-circle" alt="User Image" />
-                        </div>
-                        <div class="pull-left info">
-                            <p>Hello, <?php // echo Yii::app()->user->name ? Yii::app()->user->name : "Guest" ?></p>
-
-                            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-                        </div>
-                    </div>-->
+                    <!--                    <div class="user-panel">
+                                            <div class="pull-left image">
+                                                <img src="<?php // echo Yii::app()->theme->baseUrl;  ?>/img/avatar3.png" class="img-circle" alt="User Image" />
+                                            </div>
+                                            <div class="pull-left info">
+                                                <p>Hello, <?php // echo Yii::app()->user->name ? Yii::app()->user->name : "Guest"  ?></p>
+                    
+                                                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                                            </div>
+                                        </div>-->
                     <!-- search form -->
-<!--                    <form action="#" method="get" class="sidebar-form">
-                        <div class="input-group">
-                            <input type="text" name="q" class="form-control" placeholder="Search..."/>
-                            <span class="input-group-btn">
-                                <button type='submit' name='seach' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
-                            </span>
-                        </div>
-                    </form>-->
+                    <!--                    <form action="#" method="get" class="sidebar-form">
+                                            <div class="input-group">
+                                                <input type="text" name="q" class="form-control" placeholder="Search..."/>
+                                                <span class="input-group-btn">
+                                                    <button type='submit' name='seach' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
+                                                </span>
+                                            </div>
+                                        </form>-->
                     <!-- /.search form -->
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <!--<ul class="sidebar-menu">-->
@@ -152,6 +152,20 @@
 
         <!-- add new calendar event modal -->
 
+        <!-- MAIN MODAL -->
+        <div class="row-fluid">
+            <?php
+// El modal de la página
+//            $this->beginWidget('booster.widgets.TbModal', array('id' => 'mainModal', 'options' => array('backdrop' => 'static')));
+//            $this->endWidget();
+            ?>
+        </div>
+        <div class="modal fade" id="mainBigModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            
+        </div>
+
+        <!-- END MAIN MODAL -->
+
 
         <!-- jQuery 2.0.2 -->
         <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>-->
@@ -178,7 +192,7 @@
         <!-- input-mask -->
         <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/plugins/input-mask/jquery.inputmask.js" type="text/javascript"></script>
         <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/plugins/input-mask/jquery.inputmask.date.extensions.js" type="text/javascript"></script>
-        <!--<script src="<?php // echo Yii::app()->theme->baseUrl; ?>/js/plugins/input-mask/jquery.inputmask.numeric.extensions.js" type="text/javascript"></script>-->
+        <!--<script src="<?php // echo Yii::app()->theme->baseUrl;  ?>/js/plugins/input-mask/jquery.inputmask.numeric.extensions.js" type="text/javascript"></script>-->
         <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/plugins/input-mask/jquery.inputmask.extensions.js" type="text/javascript"></script>
         <!-- iCheck -->
         <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
