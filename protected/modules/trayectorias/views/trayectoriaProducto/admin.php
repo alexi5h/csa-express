@@ -27,14 +27,28 @@ $this->menu = array(
             'columns' => array(
                 array(
                     'name' => 'trayectoria_id',
-                    'value' => 'isset($data->trayectoria) ? $data->trayectoria : null',
-                    'filter' => CHtml::listData(Trayectoria::model()->findAll(), 'id', Trayectoria::representingColumn()),
+                    'value' => 'isset($data->trayectoria) ? $data->trayectoria->nombre_trayectoria : null',
                 ),
-                'producto_id',
-                'cliente_origen_id',
-                'cliente_destino_id',
-                'ciudad_origen_id',
-                'ciudad_destino_id',
+                array(
+                    'name' => 'producto_id',
+                    'value' => 'isset($data->producto) ? $data->producto->nombre : null',
+                ),
+                array(
+                    'name' => 'cliente_origen_id',
+                    'value' => 'isset($data->clienteOrigen) ? $data->clienteOrigen->nombre_formato : null',
+                ),
+                array(
+                    'name' => 'cliente_destino_id',
+                    'value' => 'isset($data->clienteDestino) ? $data->clienteDestino->nombre_formato : null',
+                ),
+                array(
+                    'name' => 'ciudad_origen_id',
+                    'value' => 'isset($data->ciudadOrigen) ? $data->ciudadOrigen->nombre : null',
+                ),
+                array(
+                    'name' => 'ciudad_destino_id',
+                    'value' => 'isset($data->ciudadDestino) ? $data->ciudadDestino->nombre : null',
+                ),
                 /*
                   'fecha_creacion',
                   'fecha_enviado',

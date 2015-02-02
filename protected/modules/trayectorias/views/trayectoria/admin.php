@@ -25,11 +25,23 @@ $this->menu = array(
             'type' => 'striped bordered hover advance',
             'dataProvider' => $model->search(),
             'columns' => array(
-                'ciudad_origen_id',
-                'ciudad_destino_id',
+                array(
+                    'name'=>'ciudad_origen_id',
+                    'value'=>'$data->ciudadOrigen'
+                ),
+                array(
+                    'name'=>'ciudad_origen_id',
+                    'value'=>'$data->ciudadDestino'
+                ),
+//                'ciudad_origen_id',
+//                'ciudad_destino_id',
                 'peso_actual',
                 'peso_limite',
-                'usuario_creacion_id',
+                array(
+                    'name'=>'usuario_creacion_id',
+                    'value'=>  'Yii::app()->user->um->loadUserById($data->usuario_creacion_id)->username'
+                ),
+//                'usuario_creacion_id',
                 'fecha_creacion',
                 /*
                   array(

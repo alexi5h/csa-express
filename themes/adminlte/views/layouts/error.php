@@ -19,9 +19,9 @@
 <body>
     <div class="lock-header">
         <!-- BEGIN LOGO -->
-        <a class="center" id="logo" href="index.html">
-            <img class="center" alt="logo" src="<?php echo Yii::app()->theme->baseUrl; ?>/images/logo.png" width="200">
-        </a>
+<!--        <a class="center" id="logo" href="index.html">
+            <img class="center" alt="logo" src="<?php // echo Yii::app()->theme->baseUrl; ?>/images/logo.png" width="200">
+        </a>-->
         <!-- END LOGO -->
     </div>
     

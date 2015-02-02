@@ -129,7 +129,7 @@ class CiudadController extends AweController {
             Yii::app()->end();
         }
     }
-    
+
     public function actionAjaxGetCiudadesByProvincia() {
         if (Yii::app()->request->isAjaxRequest) {
             if (isset($_POST['provincia_id']) && $_POST['provincia_id'] > 0) {
@@ -149,6 +149,28 @@ class CiudadController extends AweController {
                 }
             } else {
                 echo CHtml::tag('option', array('value' => 0, 'id' => 'p'), '- Seleccione una provincia -', true);
+            }
+        }
+    }
+
+    public function actionAjaxGetCiudadesByCiudad() {
+        if (Yii::app()->request->isAjaxRequest) {
+            if (isset($_POST['ciudad_id']) && $_POST['ciudad_id'] > 0) {
+                $data = Ciudad::model()->findAll(array(
+                    "condition" => "id not in (" . $_POST['ciudad_id'] . ") ",
+                    "order" => "nombre",
+                ));
+                if ($data) {
+                    $data = CHtml::listData($data, 'id', 'nombre');
+                    echo CHtml::tag('option', array('value' => 0, 'id' => 'p'), '- Ciudades -', true);
+                    foreach ($data as $value => $name) {
+                        echo CHtml::tag('option', array('value' => $value), CHtml::encode($name), true);
+                    }
+                } else {
+                    echo CHtml::tag('option', array('value' => 0), '- No existen opciones -', true);
+                }
+            } else {
+                echo CHtml::tag('option', array('value' => 0, 'id' => 'p'), '- Seleccione una ciudad -', true);
             }
         }
     }
