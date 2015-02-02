@@ -1,5 +1,5 @@
 admin - admin - superAdmin
-alexish - 123456 - admin
+ahidalgo - 123456 - admin
 csarsoza - 123456 - admin
 aportilla - 123456 - logistica
 esaa - 123456 - logistica
