@@ -6,14 +6,14 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
     'type' => 'horizontal',
     'id' => 'producto-categoria-form',
     'enableAjaxValidation' => true,
-    'clientOptions' => array('validateOnSubmit' => false, 'validateOnChange' => true,),
+    'clientOptions' => array('validateOnSubmit' => true, 'validateOnChange' => false,),
     'enableClientValidation' => false,
         ));
 ?>
 
 <div class="box box-solid box-primary">
     <div class="box-header">
-        <h4 class="box-title"> <i class="fa fa-map-marker"></i> <?php echo Yii::t('AweCrud.app', $model->isNewRecord ? 'Create' : 'Update') . ' ' . ProductoCategoria::label(1); ?> </h4>
+        <h4 class="box-title"> <i class="fa fa-plus"></i> <?php echo Yii::t('AweCrud.app', $model->isNewRecord ? 'Create' : 'Update') . ' ' . ProductoCategoria::label(1); ?> </h4>
         <div class="box-tools pull-right">
             <a class="btn btn-primary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></a>
         </div>

@@ -63,7 +63,7 @@ class Menu {
                     array('label' => '<i class="fa fa-angle-double-right"></i> Agencias', 'url' => array('/crm/agencia/admin'), 'access' => 'action_agencia_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'agencia')),
                     array('label' => '<i class="fa fa-angle-double-right"></i> Sucursales', 'url' => array('/crm/sucursal/admin'), 'access' => 'action_sucursal_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'sucursal')),
                 )),
-            array('label' => '<i class="fa fa-globe"></i>  Trayectorias <i class="fa pull-right fa-angle-left"></i>', 'url' => '#', 'items' => array(
+            array('label' => '<i class="fa fa-road"></i>  Trayectorias <i class="fa pull-right fa-angle-left"></i>', 'url' => '#', 'items' => array(
                     array('label' => '<i class="fa fa-angle-double-right"></i> ' . TrayectoriaEtapa::label(2), 'url' => array('/trayectorias/trayectoriaEtapa/admin'), 'access' => 'action_trayectoriaEtapa_admin', 'active_rules' => array('module' => 'trayectorias', 'controller' => 'trayectoriaEtapa')),
                 )),
 //            array('label' => '<i class="icon-dollar"></i>  Entidades', 'url' => '#', 'items' => array(
