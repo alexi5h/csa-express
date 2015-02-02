@@ -7,13 +7,13 @@ class Menu {
     public static function getMenu($controller) {
         self::$_controller = $controller;
         $items = array(
-            array('label' => '<i class="fa fa-dashboard"></i> Dashboard', 'url' => Yii::app()->homeUrl),
+            array('label' => '<i class="fa fa-dashboard"></i> Home', 'url' => Yii::app()->homeUrl),
             array('label' => '<i class="fa fa-users"></i> ' . Persona::label(2), 'url' => array('/crm/persona/admin'), 'access' => 'action_persona_admin', 'active_rules' => array('module' => 'crm', 'controller' => 'persona')),
-            array('label' => '<i class="fa fa-globe"></i>  Productos <i class="fa pull-right fa-angle-left"></i>', 'url' => '#', 'items' => array(
+            array('label' => '<i class="fa fa-briefcase"></i>  Productos <i class="fa pull-right fa-angle-left"></i>', 'url' => '#', 'items' => array(
                     array('label' => '<i class="fa fa-angle-double-right"></i> ' . Producto::label(2), 'url' => array('/productos/producto/admin'), 'access' => 'action_producto_admin', 'active_rules' => array('module' => 'productos', 'controller' => 'producto')),
                     array('label' => '<i class="fa fa-angle-double-right"></i> ' . ProductoCategoria::label(2), 'url' => array('/productos/productoCategoria/admin'), 'access' => 'action_productoCategoria_admin', 'active_rules' => array('module' => 'productos', 'controller' => 'productoCategoria')),
                 )),
-            array('label' => '<i class="fa fa-globe"></i>  Trayectorias <i class="fa pull-right fa-angle-left"></i>', 'url' => '#', 'items' => array(
+            array('label' => '<i class="fa fa-road"></i>  Trayectorias <i class="fa pull-right fa-angle-left"></i>', 'url' => '#', 'items' => array(
                     array('label' => '<i class="fa fa-angle-double-right"></i> ' . Trayectoria::label(2), 'url' => array('/trayectorias/trayectoria/admin'), 'access' => 'action_trayectoria_admin', 'active_rules' => array('module' => 'trayectorias', 'controller' => 'trayectoria')),
                     array('label' => '<i class="fa fa-angle-double-right"></i> ' . TrayectoriaProducto::label(2), 'url' => array('/trayectorias/trayectoriaProducto/admin'), 'access' => 'action_trayectoriaProducto_admin', 'active_rules' => array('module' => 'trayectorias', 'controller' => 'trayectoriaProducto')),
                 )),
