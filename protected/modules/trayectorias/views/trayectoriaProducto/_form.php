@@ -13,7 +13,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
 ?>
 <div class="box box-solid box-primary">
     <div class="box-header">
-        <h4 class="box-title"> <i class="fa fa-map-marker"></i> <?php echo Yii::t('AweCrud.app', $model->isNewRecord ? 'Create' : 'Update') . ' ' . TrayectoriaProducto::label(1); ?> </h4>
+        <h4 class="box-title"> <i class="fa fa-plus"></i> <?php echo Yii::t('AweCrud.app', $model->isNewRecord ? 'Create' : 'Update') . ' ' . TrayectoriaProducto::label(1); ?> </h4>
         <div class="box-tools pull-right">
             <a class="btn btn-primary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></a>
         </div>

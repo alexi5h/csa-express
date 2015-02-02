@@ -13,7 +13,7 @@ $this->menu = array(
 
 <div class="box box-solid box-primary">
     <div class="box-header">
-        <h4 class="box-title"> <i class="fa fa-map-marker"></i> <?php echo Yii::t('AweCrud.app', 'Manage') ?> <?php echo TrayectoriaProducto::label(2) ?> </h4>
+        <h4 class="box-title"> <i class="fa fa-road"></i> <?php echo Yii::t('AweCrud.app', 'Manage') ?> <?php echo TrayectoriaProducto::label(2) ?> </h4>
         <div class="box-tools pull-right">
             <a class="btn btn-primary btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></a>
         </div>
@@ -69,20 +69,20 @@ $this->menu = array(
                     }',
                     'buttons' => array(
                         'update' => array(
-                            'label' => '<button class="btn btn-primary"><i class="icon-pencil"></i></button>',
+                            'label' => '<button class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i></button>',
                             'options' => array('title' => 'Actualizar'),
                             'imageUrl' => false,
                         //'visible' => 'Util::checkAccess(array("action_incidenciaPrioridad_update"))'
                         ),
                         'delete' => array(
-                            'label' => '<button class="btn btn-danger"><i class="icon-trash"></i></button>',
+                            'label' => '<button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>',
                             'options' => array('title' => 'Eliminar'),
                             'imageUrl' => false,
                         //'visible' => 'Util::checkAccess(array("action_incidenciaPrioridad_delete"))'
                         ),
                     ),
                     'htmlOptions' => array(
-                        'width' => '80px'
+                        'width' => '90px'
                     )
                 ),
             ),

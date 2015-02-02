@@ -15,7 +15,7 @@ class ProductoCategoria extends BaseProductoCategoria {
     }
 
     public static function label($n = 1) {
-        return Yii::t('app', 'ProductoCategoria|ProductoCategorias', $n);
+        return Yii::t('app', 'Producto Categoría|Producto Categorías', $n);
     }
     
     public function scopes() {
