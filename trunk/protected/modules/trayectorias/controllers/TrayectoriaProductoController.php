@@ -34,7 +34,7 @@ class TrayectoriaProductoController extends AweController {
         $model = new TrayectoriaProducto;
         $modelProducto = Producto::model()->findAll();
         $modelCiudadOrigen = Ciudad::model()->findAll();
-        $modelCiudadDestino = new Ciudad;
+        $modelCiudadDestino = Ciudad::model()->findAll();
         $modelTrayectoria = new Trayectoria;
         $modelClienteOrigen = new Cliente;
         $modelClienteDestino = new Cliente;
@@ -44,9 +44,21 @@ class TrayectoriaProductoController extends AweController {
 
         if (isset($_POST['TrayectoriaProducto'])) {
             $model->attributes = $_POST['TrayectoriaProducto'];
+            $model->estado = TrayectoriaProducto::ESTADO_EN_ESPERA;
             $model->fecha_creacion = Util::FechaActual();
-            if ($model->save()) {
-                $this->redirect(array('admin'));
+
+            $modelClienteOrigen->attributes = $_POST['ClienteOrigen'];
+            $modelClienteDestino->attributes = $_POST['Cliente'];
+            if ($modelClienteOrigen->save() && $modelClienteDestino->save()) {
+                $model->cliente_origen_id = $modelClienteOrigen->id;
+                $model->cliente_destino_id = $modelClienteDestino->id;
+                if ($model->save()) {
+                    $modelProducto = Producto::model()->findByPk($model->producto_id);
+                    $modelTrayectoria = Trayectoria::model()->findByPk($model->trayectoria_id);
+                    $modelTrayectoria->peso_actual = $modelTrayectoria->peso_actual + $modelProducto->peso;
+                    $modelTrayectoria->save();
+                    $this->redirect(array('admin'));
+                }
             }
         }
 
@@ -68,18 +80,40 @@ class TrayectoriaProductoController extends AweController {
      */
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
+        $modelProducto = Producto::model()->findAll();
+        $modelCiudadOrigen = Ciudad::model()->findAll();
+        $modelCiudadDestino = Ciudad::model()->findAll();
+        $modelTrayectoria = Trayectoria::model()->findByPk($model->trayectoria_id);
+        $modelClienteOrigen = Cliente::model()->findByPk($model->cliente_origen_id);
+        $modelClienteDestino = Cliente::model()->findByPk($model->cliente_destino_id);
 
         $this->performAjaxValidation($model, 'trayectoria-producto-form');
 
         if (isset($_POST['TrayectoriaProducto'])) {
             $model->attributes = $_POST['TrayectoriaProducto'];
-            if ($model->save()) {
-                $this->redirect(array('admin'));
+            $modelClienteOrigen->attributes = $_POST['ClienteOrigen'];
+            $modelClienteDestino->attributes = $_POST['Cliente'];
+            if ($modelClienteOrigen->save() && $modelClienteDestino->save()) {
+                $model->cliente_origen_id = $modelClienteOrigen->id;
+                $model->cliente_destino_id = $modelClienteDestino->id;
+                if ($model->save()) {
+                    $modelProducto = Producto::model()->findByPk($model->producto_id);
+                    $modelTrayectoria = Trayectoria::model()->findByPk($model->trayectoria_id);
+                    $modelTrayectoria->peso_actual = $modelTrayectoria->peso_actual + $modelProducto->peso;
+                    $modelTrayectoria->save();
+                    $this->redirect(array('admin'));
+                }
             }
         }
 
         $this->render('update', array(
             'model' => $model,
+            'modelProducto' => $modelProducto,
+            'modelCiudadOrigen' => $modelCiudadOrigen,
+            'modelCiudadDestino' => $modelCiudadDestino,
+            'modelTrayectoria' => $modelTrayectoria,
+            'modelClienteOrigen' => $modelClienteOrigen,
+            'modelClienteDestino' => $modelClienteDestino,
         ));
     }
 

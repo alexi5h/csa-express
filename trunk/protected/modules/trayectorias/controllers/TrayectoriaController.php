@@ -143,4 +143,44 @@ class TrayectoriaController extends AweController {
         }
     }
 
+    public function actionAjaxGetTrayectoriasbyCiudades() {
+        if (Yii::app()->request->isAjaxRequest) {
+            if (isset($_POST['producto_id']) && $_POST['producto_id'] > 0 && isset($_POST['ciudad_origen_id']) && $_POST['ciudad_origen_id'] > 0 && isset($_POST['ciudad_destino_id']) && $_POST['ciudad_destino_id'] > 0) {
+                $modelProducto = Producto::model()->findByPk($_POST['producto_id']);
+                $peso = $modelProducto->peso;
+                $ids = Trayectoria::model()->getTrayectoriasDisponibles($_POST['ciudad_origen_id'], $_POST['ciudad_destino_id']);
+                $ids_final = array();
+                $data = array();
+
+                if ($ids) {
+                    foreach ($ids as $value) {
+                        $modelTrayectoria = Trayectoria::model()->findByPk($value);
+                        $pesoControl = $modelTrayectoria->peso_limite - $modelTrayectoria->peso_actual;
+                        if ($pesoControl >= $peso) {
+                            array_push($ids_final, $value);
+                        }
+                    }
+                    if ($ids_final) {
+                        $ids_final = implode(',', $ids_final);
+                        $data = Trayectoria::model()->findAll(array(
+                            "condition" => "id in (" . $ids_final . ") ",
+                            "order" => "fecha_creacion",
+                        ));
+                    }
+                }
+                if ($data) {
+                    $data = CHtml::listData($data, 'id', 'nombre_trayectoria');
+                    echo CHtml::tag('option', array('value' => 0, 'id' => 'p'), '- Trayectorias -', true);
+                    foreach ($data as $value => $name) {
+                        echo CHtml::tag('option', array('value' => $value), CHtml::encode($name), true);
+                    }
+                } else {
+                    echo CHtml::tag('option', array('value' => 0), '- No existen opciones -', true);
+                }
+            } else {
+                echo CHtml::tag('option', array('value' => 0, 'id' => 'p'), '- Seleccione una ciudad -', true);
+            }
+        }
+    }
+
 }

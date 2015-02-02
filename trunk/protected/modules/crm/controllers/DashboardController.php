@@ -27,21 +27,21 @@ class DashboardController extends Controller {
         if (Yii::app()->user->isGuest) {
             $this->redirect(Yii::app()->user->ui->loginUrl);
         }
-//        if ($error = Yii::app()->errorHandler->error) {
-//            if (Yii::app()->request->isAjaxRequest) {
-//                echo $error['message'];
-//            } else {
-//                if ($error['code'] == 404) {
-//                    $this->layout = '//layouts/error';
-//                    $this->render('404', $error);
-//                } else if ($error['code'] == 401) {
-//                    $this->layout = '//layouts/error';
-//                    $this->render('401', $error);
-//                } else {
-//                    $this->render('error', $error);
-//                }
-//            }
-//        }
+        if ($error = Yii::app()->errorHandler->error) {
+            if (Yii::app()->request->isAjaxRequest) {
+                echo $error['message'];
+            } else {
+                if ($error['code'] == 404) {
+                    $this->layout = '//layouts/error';
+                    $this->render('404', $error);
+                } else if ($error['code'] == 401) {
+                    $this->layout = '//layouts/error';
+                    $this->render('401', $error);
+                } else {
+                    $this->render('error', $error);
+                }
+            }
+        }
     }
 
 }

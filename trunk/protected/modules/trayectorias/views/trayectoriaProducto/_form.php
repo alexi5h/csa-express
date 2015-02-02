@@ -1,4 +1,5 @@
 <?php
+Util::tsRegisterAssetJs('_form.js');
 /** @var TrayectoriaProductoController $this */
 /** @var TrayectoriaProducto $model */
 /** @var AweActiveForm $form */
@@ -7,7 +8,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
     'id' => 'trayectoria-producto-form',
     'enableAjaxValidation' => true,
     'clientOptions' => array('validateOnSubmit' => true, 'validateOnChange' => false,),
-    'enableClientValidation' => false,
+    'enableClientValidation' => true,
         ));
 ?>
 <div class="box box-solid box-primary">
@@ -18,8 +19,6 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
         </div>
     </div>
     <div class="box-body">
-        <?php echo $form->dropDownListGroup($model, 'trayectoria_id', array('wrapperHtmlOptions' => array('class' => 'col-sm-12',), 'widgetOptions' => array('data' => array('' => ' -- Seleccione -- ') + CHtml::listData(Trayectoria::model()->findAll(), 'id', Trayectoria::representingColumn()), 'htmlOptions' => array(),))) ?>
-
         <?php
         echo $form->select2Group(
                 $model, 'producto_id', array(
@@ -32,21 +31,107 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
             ))
         );
         ?>
-        <?php // echo $form->textFieldGroup($model, 'producto_id') ?>
+        <?php
+        echo $form->select2Group(
+                $model, 'ciudad_origen_id', array(
+            'widgetOptions' => array(
+                'asDropDownList' => true,
+                'data' => CHtml::listData($modelCiudadOrigen, 'id', 'nombre'),
+                'options' => array(
+                    'placeholder' => '-- Seleccione --',
+                ),
+            ))
+        );
+        ?>
+        <?php
+        echo $form->select2Group(
+                $model, 'ciudad_destino_id', array(
+            'widgetOptions' => array(
+                'asDropDownList' => true,
+                'data' => CHtml::listData($modelCiudadDestino, 'id', 'nombre'),
+                'options' => array(
+                    'placeholder' => '-- Seleccione --',
+                ),
+            ))
+        );
+        ?>
+        <?php
+        echo $form->select2Group(
+                $model, 'trayectoria_id', array(
+            'widgetOptions' => array(
+                'asDropDownList' => true,
+                'data' => CHtml::listData($modelTrayectoria, 'id', 'nombre_trayectoria'),
+                'options' => array(
+                    'placeholder' => '-- Seleccione --',
+                ),
+            ))
+        );
+        ?>
 
-        <?php echo $form->textFieldGroup($model, 'cliente_origen_id') ?>
+        <?php // echo $form->textFieldGroup($model, 'fecha_enviado') ?>
 
-        <?php echo $form->textFieldGroup($model, 'cliente_destino_id') ?>
-
-        <?php echo $form->textFieldGroup($model, 'ciudad_origen_id') ?>
-
-        <?php echo $form->textFieldGroup($model, 'ciudad_destino_id') ?>
+        <?php // echo $form->dropDownListGroup($model, 'estado', array('wrapperHtmlOptions' => array('class' => 'col-sm-12',), 'widgetOptions' => array('data' => array('EN ESPERA' => 'EN ESPERA', 'ENVIADO' => 'ENVIADO',), 'htmlOptions' => array(),))) ?>
 
 
-        <?php echo $form->textFieldGroup($model, 'fecha_enviado') ?>
+        <div id="contenedor_cliente_origen" class="form-group">
+            <div class="control-group" style="margin-bottom: 10px">
+                <label class="control-label"> Datos de clientes</label>
+            </div>
+            <div class="col-lg-12">
+                <div class="col-lg-6">
+                    <div class="control-group">
+                        <label class="control-label"><?php echo $form->labelEx($model, 'cliente_origen_id') ?></label>
+                    </div>
+                    <?php
+                    echo $form->textFieldGroup($modelClienteOrigen, 'nombres', array(
+                        'widgetOptions' => array(
+                            'htmlOptions' => array(
+                                'name' => 'ClienteOrigen[nombres]',
+                            ),
+                        ),
+                    ));
+                    ?>
+                    <?php
+                    echo $form->textFieldGroup($modelClienteOrigen, 'apellidos', array(
+                        'widgetOptions' => array(
+                            'htmlOptions' => array(
+                                'name' => 'ClienteOrigen[apellidos]',
+                            ),
+                        ),
+                    ));
+                    ?>
+                    <?php
+                    echo $form->textFieldGroup($modelClienteOrigen, 'cedula', array(
+                        'widgetOptions' => array(
+                            'htmlOptions' => array(
+                                'name' => 'ClienteOrigen[cedula]',
+                            ),
+                        ),
+                    ));
+                    ?>
+                    <?php echo $form->error($modelClienteOrigen, 'cedula', array('inputID' => 'ClienteOrigen_cedula')); ?>
+                    <?php
+                    echo $form->textFieldGroup($modelClienteOrigen, 'ruc', array(
+                        'widgetOptions' => array(
+                            'htmlOptions' => array(
+                                'name' => 'ClienteOrigen[ruc]',
+                            ),
+                        ),
+                    ));
+                    ?>
+                </div>
+                <div class="col-lg-6">
+                    <div class="control-group">
+                        <label class="control-label"><?php echo $form->labelEx($model, 'cliente_destino_id') ?></label>
+                    </div>
+                    <?php echo $form->textFieldGroup($modelClienteDestino, 'nombres') ?>
+                    <?php echo $form->textFieldGroup($modelClienteDestino, 'apellidos') ?>
+                    <?php echo $form->textFieldGroup($modelClienteDestino, 'cedula') ?>
+                    <?php echo $form->textFieldGroup($modelClienteDestino, 'ruc') ?>
+                </div>
 
-        <?php echo $form->dropDownListGroup($model, 'estado', array('wrapperHtmlOptions' => array('class' => 'col-sm-12',), 'widgetOptions' => array('data' => array('EN ESPERA' => 'EN ESPERA', 'ENVIADO' => 'ENVIADO',), 'htmlOptions' => array(),))) ?>
-
+            </div>
+        </div>
     </div>
     <div class="box-footer">
         <?php

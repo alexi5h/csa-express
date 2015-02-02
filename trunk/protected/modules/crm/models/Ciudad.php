@@ -34,5 +34,5 @@ class Ciudad extends BaseCiudad {
             )
         );
     }
-
+    
 }
