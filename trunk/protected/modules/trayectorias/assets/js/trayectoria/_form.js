@@ -1,6 +1,9 @@
-$(function(){
-   //Máscara del input de Fecha
+$(function () {
+    //Máscara del input de Fecha
 //    $("#Trayectoria_fecha_despacho").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"}); 
+    $("#Trayectoria_ciudad_origen_id").change(function () {
+        AjaxListaCiudadDestino("Trayectoria_ciudad_origen_id", "Trayectoria_ciudad_destino_id");
+    });
 });
 function showModalLoadingWidth() {
     var html = "";
@@ -13,7 +16,8 @@ function showModalLoadingWidth() {
 function showModalDataWidth(html) {
     $("#mainBigModal").html(html);
     $('#mainBigModal').modal({
-        backdrop: 'static'
+        backdrop: 'static',
+        keyboard: false
     });
     $("#mainBigModal").modal("show");
 //    $('select.fix').selectBox();
@@ -41,8 +45,19 @@ function viewModalWidth(url, CallBack) {
     });
 }
 
+function select2vacio(id) {
+    if (id == 0) {
+        $("#s2id_Trayectoria_ciudad_origen_id").select2("val", "");
+    }
+    else {
+        $('#' + id).select2("val", "");
+    }
+}
+
 function AjaxActualizacionInformacionTrayectoria(Formulario) {
     AjaxGestionModalTrayectoria(Formulario, function (list) {
+        select2vacio('s2id_Trayectoria_ciudad_origen_id');
+        select2vacio('s2id_Trayectoria_ciudad_destino_id');
         $('#trayectoria-form').trigger("reset");
     });
 }
@@ -93,4 +108,25 @@ function AjaxGuardarModalTrayectoria(verificador, Formulario, callBack) {
         });
     }
 
+}
+
+function AjaxListaCiudadDestino(lista, lista_actualizar) {
+    $('#s2id_' + lista_actualizar + ' a span').html('');
+    AjaxCargarListas(baseUrl + "crm/ciudad/ajaxGetCiudadesByCiudad",
+            {ciudad_id: $("#" + lista).val()}, function (data) {
+        $("#" + lista_actualizar).html(data);
+        $('#s2id_' + lista_actualizar + ' a span.select2-chosen').html($("#" + lista_actualizar + " option[id='p']").html());
+        $('#s2id_' + lista_actualizar + ' a span.select2-arrow').html('<b></b>');
+    });
+}
+
+function AjaxCargarListas(url, data, callBack) {
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: data,
+        success: function (data) {
+            callBack(data);
+        }
+    });
 }

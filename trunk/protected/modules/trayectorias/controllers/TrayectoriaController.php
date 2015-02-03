@@ -32,7 +32,8 @@ class TrayectoriaController extends AweController {
      */
     public function actionCreate() {
         $model = new Trayectoria;
-        $modelCiudad = Ciudad::model()->findAll();
+        $modelCiudadOrigen = Ciudad::model()->findAll();
+        $modelCiudadDestino = new Ciudad;
         $validadorPartial = true;
 
         $model->peso_actual = 0;
@@ -60,7 +61,8 @@ class TrayectoriaController extends AweController {
         if ($validadorPartial) {
             $this->render('create', array(
                 'model' => $model,
-                'modelCiudad' => $modelCiudad,
+                'modelCiudadOrigen' => $modelCiudadOrigen,
+                'modelCiudadDestino' => $modelCiudadDestino,
             ));
         }
     }
@@ -72,7 +74,10 @@ class TrayectoriaController extends AweController {
      */
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
-        $modelCiudad = Ciudad::model()->findAll();
+        $modelCiudadOrigen = Ciudad::model()->findAll();
+        $modelCiudadDestino = Ciudad::model()->findAll(array(
+            "condition" => "id not in (" . $model->ciudad_origen_id . ") ",
+        ));
 
         $this->performAjaxValidation($model, 'trayectoria-form');
 
@@ -85,7 +90,8 @@ class TrayectoriaController extends AweController {
 
         $this->render('update', array(
             'model' => $model,
-            'modelCiudad' => $modelCiudad,
+            'modelCiudadOrigen' => $modelCiudadOrigen,
+            'modelCiudadDestino' => $modelCiudadDestino,
         ));
     }
 

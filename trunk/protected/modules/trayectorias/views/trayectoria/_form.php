@@ -25,7 +25,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
                 $model, 'ciudad_origen_id', array(
             'widgetOptions' => array(
                 'asDropDownList' => true,
-                'data' => CHtml::listData($modelCiudad, 'id', 'nombre'),
+                'data' => CHtml::listData($modelCiudadOrigen, 'id', 'nombre'),
                 'options' => array(
                     'placeholder' => '-- Seleccione --',
                 ),
@@ -37,7 +37,7 @@ $form = $this->beginWidget('ext.AweCrud.components.AweActiveForm', array(
                 $model, 'ciudad_destino_id', array(
             'widgetOptions' => array(
                 'asDropDownList' => true,
-                'data' => CHtml::listData($modelCiudad, 'id', 'nombre'),
+                'data' => CHtml::listData($modelCiudadDestino, 'id', 'nombre'),
                 'options' => array(
                     'placeholder' => '-- Seleccione --',
                 ),

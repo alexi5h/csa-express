@@ -12,7 +12,7 @@ Yii::app()->clientScript->scriptMap['jquery.js'] = false;
     <div class="modal-content">
         <div class="modal-header">
             <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
-            <h4 class="box-title"> <i class="fa fa-map-marker"></i> <?php echo Yii::t('AweCrud.app', $model->isNewRecord ? 'Create' : 'Update') . ' ' . TrayectoriaCheckpoint::label(1); ?> </h4>
+            <h4 class="box-title"> <i class="fa fa-road"></i> <?php echo Yii::t('AweCrud.app', $model->isNewRecord ? 'Create' : 'Update') . ' ' . TrayectoriaCheckpoint::label(1); ?> </h4>
         </div>
         <div class="modal-body">
             <?php
