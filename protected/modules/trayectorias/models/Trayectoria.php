@@ -23,6 +23,21 @@ class Trayectoria extends BaseTrayectoria {
             'ciudadDestino' => array(self::BELONGS_TO, 'Ciudad', 'ciudad_destino_id'),
         ));
     }
+    
+    public function rules() {
+        return array_merge(parent::rules(), array(
+            array('ciudad_origen_id', 'numerical',
+                'integerOnly' => true,
+                'min' => 1,
+                'tooSmall' => 'Ciudad Origen no puede ser nulo',
+            ),
+            array('ciudad_destino_id', 'numerical',
+                'integerOnly' => true,
+                'min' => 1,
+                'tooSmall' => 'Ciudad Destino no puede ser nulo',
+            ),
+        ));
+    }
 
     public function attributeLabels() {
         return array_merge(parent::attributeLabels(), array(

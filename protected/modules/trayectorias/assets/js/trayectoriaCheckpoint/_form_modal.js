@@ -2,8 +2,18 @@ var cont = 0;
 $(function () {
 });
 
+function select2vacio(id) {
+    if (id == 0) {
+        $("#s2id_TrayectoriaCheckpoint_ciudad_id").select2("val", "");
+    }
+    else {
+        $('#' + id).select2("val", "");
+    }
+}
+
 function AjaxActualizacionInformacion(Formulario) {
     AjaxGestionModalCheckpoint(Formulario, function (list) {
+        select2vacio('s2id_TrayectoriaCheckpoint_ciudad_id');
         $('#trayectoria-checkpoint-form').trigger("reset");
     });
 }
@@ -42,14 +52,12 @@ function AjaxGuardarModalCheckpoint(verificador, Formulario, callBack) {
             success: function (data) {
                 if (data.success) {
                     cont++;
-                    console.log(cont);
                     callBack(listaActualizar, data);
                     if (cont == parseInt(num_trayectorias)) {
                         $('#mainBigModal').modal('hide');
+                        bootbox.alert("Se completó el registro");
                     }
 
-                } else {
-                    bootbox.alert(data.message);
                 }
             }
         });
