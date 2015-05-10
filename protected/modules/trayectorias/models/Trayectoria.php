@@ -23,7 +23,7 @@ class Trayectoria extends BaseTrayectoria {
             'ciudadDestino' => array(self::BELONGS_TO, 'Ciudad', 'ciudad_destino_id'),
         ));
     }
-    
+
     public function rules() {
         return array_merge(parent::rules(), array(
             array('ciudad_origen_id', 'numerical',
@@ -43,6 +43,25 @@ class Trayectoria extends BaseTrayectoria {
         return array_merge(parent::attributeLabels(), array(
             'nombre_trayectoria' => Yii::t('app', 'Trayectoria'),
         ));
+    }
+
+    public function de_etapa($trayectoria_etapa_id) {
+        $this->getDbCriteria()->mergeWith(
+                array(
+                    'condition' => 't.trayectoria_etapa_id in (' . $trayectoria_etapa_id . ')',
+                )
+        );
+        return $this;
+    }
+
+    public function getPesoMax($etapa_id) {
+        $command = Yii::app()->db->createCommand()
+                ->select("ope.id,
+                        max(ope.peso) as 'PesoMax',
+                        ope.trayectoria_etapa_id")
+                ->from("trayectoria ope")
+                ->where("ope.trayectoria_etapa_id = :etapa_id", array(':etapa_id' => $etapa_id));
+        return ($command->queryAll());
     }
 
     public function getTrayectoriasDisponibles($ciudad_origen_id, $ciudad_destino_id) {

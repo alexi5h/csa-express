@@ -189,4 +189,27 @@ class TrayectoriaController extends AweController {
         }
     }
 
+    public function actionKanban() {
+        $etapas = TrayectoriaEtapa::model()->findAll();
+        //Actualización kanban por ajax
+        $result = array();
+        if (Yii::app()->request->isAjaxRequest) {
+            $result['success'] = true;
+            $result['html'] = $this->renderPartial('_kanban', array('etapas' => $etapas), TRUE, FALSE);
+            echo json_encode($result);
+        } else {
+
+            $this->render('kanban', array(
+                'etapas' => $etapas,
+            ));
+        }
+    }
+
+    public function actionAjaxUpdateTrayectoriaEtapa($id_data, $id_etapa) {
+        Trayectoria::model()->updateByPk($id_data, array(
+            'trayectoria_etapa_id' => $id_etapa,
+                )
+        );
+    }
+
 }
