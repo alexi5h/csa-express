@@ -13,10 +13,12 @@
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/style.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/font-awesome.min.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/ionicons.min.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/kanban.css" />
+
         <!-- jvectormap -->
         <link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
         <!-- Morris chart -->
-        <!--<link href="<?php //echo Yii::app()->theme->baseUrl;    ?>/css/morris/morris.css" rel="stylesheet" type="text/css" />-->
+        <!--<link href="<?php //echo Yii::app()->theme->baseUrl;      ?>/css/morris/morris.css" rel="stylesheet" type="text/css" />-->
         <!--<link rel="stylesheet" type="text/css" href="../../css/bootstrap-wysihtml5/bootstrap3-wysihtml5.css" />-->
 
         <script>
@@ -55,7 +57,7 @@
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <!--                                <li class="user-header">
-                                                                    <img src="<?php // echo Yii::app()->theme->baseUrl;  ?>/img/avatar3.png" class="img-circle" alt="User Image" />
+                                                                    <img src="<?php // echo Yii::app()->theme->baseUrl;    ?>/img/avatar3.png" class="img-circle" alt="User Image" />
                                                                     <p>
                                 <?php // echo Yii::app()->user->name ? Yii::app()->user->name : "Guest" ?>
                                                                         <small>Member since Nov. 2012</small>
@@ -84,10 +86,10 @@
                     <!-- Sidebar user panel -->
                     <!--                    <div class="user-panel">
                                             <div class="pull-left image">
-                                                <img src="<?php // echo Yii::app()->theme->baseUrl;  ?>/img/avatar3.png" class="img-circle" alt="User Image" />
+                                                <img src="<?php // echo Yii::app()->theme->baseUrl;    ?>/img/avatar3.png" class="img-circle" alt="User Image" />
                                             </div>
                                             <div class="pull-left info">
-                                                <p>Hello, <?php // echo Yii::app()->user->name ? Yii::app()->user->name : "Guest"  ?></p>
+                                                <p>Hello, <?php // echo Yii::app()->user->name ? Yii::app()->user->name : "Guest"    ?></p>
                     
                                                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                                             </div>
@@ -161,7 +163,7 @@
             ?>
         </div>
         <div class="modal fade" id="mainBigModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            
+
         </div>
 
         <!-- END MAIN MODAL -->
@@ -192,7 +194,7 @@
         <!-- input-mask -->
         <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/plugins/input-mask/jquery.inputmask.js" type="text/javascript"></script>
         <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/plugins/input-mask/jquery.inputmask.date.extensions.js" type="text/javascript"></script>
-        <!--<script src="<?php // echo Yii::app()->theme->baseUrl;  ?>/js/plugins/input-mask/jquery.inputmask.numeric.extensions.js" type="text/javascript"></script>-->
+        <!--<script src="<?php // echo Yii::app()->theme->baseUrl;    ?>/js/plugins/input-mask/jquery.inputmask.numeric.extensions.js" type="text/javascript"></script>-->
         <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/plugins/input-mask/jquery.inputmask.extensions.js" type="text/javascript"></script>
         <!-- iCheck -->
         <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
@@ -205,6 +207,8 @@
 
         <!-- AdminLTE for demo purposes -->
         <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/AdminLTE/demo.js" type="text/javascript"></script>
+        <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/jquery.nicescroll.js" type="text/javascript"></script>
+
         <script>
             change_layout();
         </script>

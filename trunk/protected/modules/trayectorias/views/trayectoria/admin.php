@@ -5,6 +5,7 @@ $this->menu = array(
     array('label' => Yii::t('AweCrud.app', 'Create'), 'icon' => 'plus', 'url' => array('create'),
     //'visible' => (Util::checkAccess(array('action_incidenciaPrioridad_create')))
     ),
+    array('label' => Yii::t('AweCrud.app', 'Kanban'), 'icon' => 'fa fa-puzzle-piece', 'visible' => Util::checkAccess(array("action_trayectoria_kanban")), 'url' => array('/trayectorias/trayectoria/kanban')),
 );
 ?>
 <div id="flashMsg"  class="flash-messages">
@@ -26,20 +27,20 @@ $this->menu = array(
             'dataProvider' => $model->search(),
             'columns' => array(
                 array(
-                    'name'=>'ciudad_origen_id',
-                    'value'=>'$data->ciudadOrigen'
+                    'name' => 'ciudad_origen_id',
+                    'value' => '$data->ciudadOrigen'
                 ),
                 array(
-                    'name'=>'ciudad_destino_id',
-                    'value'=>'$data->ciudadDestino'
+                    'name' => 'ciudad_destino_id',
+                    'value' => '$data->ciudadDestino'
                 ),
 //                'ciudad_origen_id',
 //                'ciudad_destino_id',
                 'peso_actual',
                 'peso_limite',
                 array(
-                    'name'=>'usuario_creacion_id',
-                    'value'=>  'Yii::app()->user->um->loadUserById($data->usuario_creacion_id)->username'
+                    'name' => 'usuario_creacion_id',
+                    'value' => 'Yii::app()->user->um->loadUserById($data->usuario_creacion_id)->username'
                 ),
 //                'usuario_creacion_id',
                 'fecha_creacion',
